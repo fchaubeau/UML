@@ -5,6 +5,7 @@ class Sensor{
 public:
 	Sensor();
 	Sensor(long sensorId, double latitude, double longitude, string description);
+	~Sensor();
 	double getLatitude(){
 		return latitude;
 	}
