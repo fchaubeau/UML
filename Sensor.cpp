@@ -15,3 +15,6 @@ Sensor::Sensor(long sensorId, double latitude, double longitude, string descript
 	this->description=description;
 	this->longitude=longitude;
 }
+
+Sensor::~Sensor(){
+}
