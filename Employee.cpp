@@ -73,7 +73,8 @@ Employee::~Employee()
 
 double Employee::getMeanAirQUalityTimeSpawn(pair<double, double> center, double radius, time_t tdebut, time_t tFin)
 {
-    return 1.0;
+    
+    return 0.0;
 }
 
 
