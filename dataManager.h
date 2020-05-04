@@ -12,5 +12,10 @@ public:
 	~DataManager();
 
 	vector<User> getUsers();
+	vector<Sensor> getSensors();
+	vector<MeasureType> getMeasureTypes();
+	vector<Measure> getMeasures();
+	vector<CompanyOwner> getCompanyOwners();
+	vector<Employee> getEmployees();
 };
 
