@@ -43,7 +43,7 @@ Measure PrivateUser::createMeasure(Sensor sensor, long attributeID)
 	if(attributeID >=3) n = e() % 50;
 	double value = e()/e.max();
 	value += n;
-	Measure res = Measure(now, sensor.getID(), attributeID, value);
+	Measure res = Measure(now, sensor.getSensorId(), attributeID, value);
 	return res;
 	
 }
