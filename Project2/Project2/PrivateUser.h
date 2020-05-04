@@ -5,7 +5,7 @@
 #include "User.h"
 #include "Measure.h"
 #include "Sensor.h"
-
+#include <random>
 
 class PrivateUser : public User
 {
@@ -17,9 +17,9 @@ public:
 
     virtual ~Traj ( );
 
-    virtual bool log_in();
+    virtual bool logIn();
 
-    virtual bool log_out();
+    virtual bool logOut();
 
     int checkPoint() const;
 
@@ -27,7 +27,7 @@ public:
 
     bool signUp(PrivateUser unPrivateUser) const;
 
-    Measure createMeasure(Sensor sensor);
+    Measure createMeasure(Sensor sensor, long attributeID);
 
 protected:
 

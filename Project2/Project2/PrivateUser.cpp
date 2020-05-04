@@ -1,6 +1,7 @@
 using namespace std;
 #include <iostream>
 #include "PrivateUser.h"
+#include <ctime>
 PrivateUser::PrivateUser (const User & unUser, const int point) : User(unUser)
 
 {
@@ -24,7 +25,7 @@ int PrivateUser::checkPoint()
 
 bool PrivateUser::uploadData(list<Measure> measures)
 {
-	
+	// write measures into csv and return true if succeed
 }
 
 bool PrivateUser::signUp(PrivateUser unPrivateUser)
@@ -32,7 +33,17 @@ bool PrivateUser::signUp(PrivateUser unPrivateUser)
 	// write unPrivateUser into csv and return true if succeed
 }
 
-Measure PrivateUser::createMeasure(Sensor sensor)
+Measure PrivateUser::createMeasure(Sensor sensor, long attributeID)
 {
-	// read from csv and return one tuple of measure according to sensor type
+	time_t now;
+	time(&now);
+	default_random_engine::default_random_engine e(1);
+	int n;
+	if(attributeID < 3) n = e() % 300;
+	if(attributeID >=3) n = e() % 50;
+	double value = e()/e.max();
+	value += n;
+	Measure res = Measure(now, sensor.getID(), attributeID, value);
+	return res;
+	
 }
