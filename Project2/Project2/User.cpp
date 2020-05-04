@@ -1,8 +1,8 @@
-#include "PrivateUser.h"
+#include "User.h"
 
 
 
-std::vector<std::string> PrivateUser::tokenize(std::string line)
+std::vector<std::string> User::tokenize(std::string line)
 {
 	std::vector<std::string> toReturn = std::vector<std::string>();
 	std::string buffer = "";
@@ -16,16 +16,24 @@ std::vector<std::string> PrivateUser::tokenize(std::string line)
 
 }
 
-PrivateUser::PrivateUser()
+User::User()
 {
 }
 
+User::User(std::string mail, std::string name, std::string password, std::string tel)
+{
+	this->mail = mail;
+	this->name = name;
+	this->password = password;
+	this->tel = tel;
+}
 
-PrivateUser::~PrivateUser()
+
+User::~User()
 {
 }
 
-bool PrivateUser::logIn(std::string mail, std::string password)
+bool User::logIn(std::string mail, std::string password)
 {
 	std::vector<std::string> tokenizedLine;
 	bool userFound = false;
@@ -42,7 +50,7 @@ bool PrivateUser::logIn(std::string mail, std::string password)
 	return userFound;
 }
 
-bool PrivateUser::modifyPassword(std::string newPassword)
+bool User::modifyPassword(std::string newPassword)
 {
 	this->password = password;
 	return true;

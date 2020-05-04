@@ -5,7 +5,7 @@
 #include <vector>
 #include <sstream>
 
-class PrivateUser
+class User
 {
 private:
 	std::string mail;
@@ -16,9 +16,9 @@ private:
 	std::vector<std::string> tokenize(std::string line);
 
 public:
-	PrivateUser();
-	PrivateUser(std::string mail, std::string name, std::string password, std::string tel);
-	~PrivateUser();
+	User();
+	User(std::string mail, std::string name, std::string password, std::string tel);
+	~User();
 
 	bool logIn(std::string mail, std::string password);
 	bool logOut();
