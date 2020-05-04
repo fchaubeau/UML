@@ -27,7 +27,7 @@ public:
 
     bool signUp(PrivateUser unPrivateUser) const;
 
-    Measure createMeasure();
+    Measure createMeasure(Sensor sensor);
 
 protected:
 

@@ -29,10 +29,10 @@ bool PrivateUser::uploadData(list<Measure> measures)
 
 bool PrivateUser::signUp(PrivateUser unPrivateUser)
 {
-	
+	// write unPrivateUser into csv and return true if succeed
 }
 
-Measure PrivateUser::createMeasure()
+Measure PrivateUser::createMeasure(Sensor sensor)
 {
-	
+	// read from csv and return one tuple of measure according to sensor type
 }
