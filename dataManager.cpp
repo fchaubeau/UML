@@ -5,34 +5,41 @@
 
 using namespace std;
 
-dataManager::dataManager()
+DataManager::DataManager()
 {
 }
 
 
-dataManager::~dataManager()
+DataManager::~DataManager()
 {
 }
 
-vector<User> dataManager::getUsers() {
+vector<User> DataManager::getUsers() {
 	vector<User> users;
 	vector<vector<string>> userFile;
 	ifstream file("users.csv");
 	while (!file.eof())
 	{
 		string line;
-		vector<string> currentlyProcessedUser;
+		vector<string> attributs;
 		size_t pos = string::npos;
 
 		getline(file, line);
-		while (pos = line.find_first_of(";") != string::npos)
-		{
-			currentlyProcessedUser.push_back(line.substr(0, pos - 1));
-			line.erase(0, pos);
+		if (file.eof())
+			break;
 
+		size_t current, previous = 0;
+		current = line.find(';');
+		while (current < line.size()) {
+			attributs.push_back(line.substr(previous, current - previous));
+			previous = current + 1;
+			current = line.find(';', previous);
 		}
-		User toAdd(currentlyProcessedUser[0], currentlyProcessedUser[1]);
+		attributs.push_back(line.substr(previous, current - previous));
+
+		User toAdd(attributs[0], attributs[1], attributs[2], attributs[3]);
 		users.push_back(toAdd);
 	}
-
+	file.close();
+	return users;
 }

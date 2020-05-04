@@ -5,11 +5,11 @@
 
 using namespace std;
 
-class dataManager
+class DataManager
 {
 public:
-	dataManager();
-	~dataManager();
+	DataManager();
+	~DataManager();
 
 	vector<User> getUsers();
 };
