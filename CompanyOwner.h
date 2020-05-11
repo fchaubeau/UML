@@ -1,9 +1,14 @@
+#if ! defined ( COMPANY_OWNER_H )
+#define COMPANY_OWNER_H
+
+using namespace std;
+
 class CompanyOwner
 {
 
 public : 
-	CompanyOwner(string companyName);
-	~ComapnyOwner();
+	CompanyOwner(string companyName = "");
+	virtual ~CompanyOwner();
 	string getCompanyName();
 	void setCompanyName(string companyName);
 	void addCleaning(Cleaning cleaning);
@@ -15,3 +20,5 @@ private :
 	string companyName;
 	
 };
+
+#endif
