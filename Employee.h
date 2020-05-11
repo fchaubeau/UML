@@ -15,6 +15,8 @@
 #include <ctime>
 #include <list>
 #include "User.h"
+#include "Sensor.h"
+#include "CompanyOwner.h"
 
 //------------------------------------------------------------- Constantes
 

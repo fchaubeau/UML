@@ -44,7 +44,7 @@ Exe: $(.O)
 	$(ECHO) "edl de $^"
 	$(COMP) -o $@ $^
 
-TestEmployee : Main.o
+TestEmployee : Main.o Employee.o
 	$(ECHO) "edl de $^"
 	$(COMP) -o $@ $^
 
