@@ -1,8 +1,14 @@
-#if ! defined ( Measure_H )
-#define Measure_H
+#if ! defined ( MEASURE_H )
+#define MEASURE_H
+
+#include <ctime>
+
+using namespace std;
+
 class Measure{
 
 public:
+	Measure(Measure measure);
 	Measure();
 	Measure(time_t time, long sensorId, long attributeId, double value);
 	long getSensorId(){
@@ -44,4 +50,4 @@ protected:
 	double value;
 };
 
-#endif
+#endif //MEASURE_H

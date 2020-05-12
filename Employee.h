@@ -14,17 +14,13 @@ class Employee : User
 
 public:
 
-    Employee(const Employee& anEmployee);
-    Employee(string mail, string name, string password, string tel, int point);
-    Employee();
-
+    Employee(const Employee & anEmployee);
+    Employee(const string & mail, const string & name, const string & password, const string & tel, const int & point);
     virtual ~Employee();
 
-    double getMeanAirQuality(pair<double, double> center, double radius, time_t t);
-
-    double getMeanAirQUalityTimeSpawn(pair<double, double> center, double radius, time_t tdebut, time_t tFin);
-
-    list<Sensor> getSimilarSensor(Sensor s);
+    double getMeanAirQuality(const pair<double, double> & center, const double & radius, const time_t & t) const;
+    double getMeanAirQUalityTimeSpawn(const pair<double, double> & center, const double & radius, const time_t & tdebut, const time_t & tFin) const;
+    list<Sensor> getSimilarSensor(const Sensor & s) const;
 
 protected:
     int point;

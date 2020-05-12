@@ -5,39 +5,48 @@
 
 using namespace std;
 
-CompanyOwner::CompanyOwner(companyName)
+#include "CompanyOwner.h"
+#include "Cleaning.h"
+#include "Measure.h"
+
+CompanyOwner::CompanyOwner(const CompanyOwner & companyOwner)
 {
-	this.companyName = companyName;
+	companyName = companyOwner.companyName;
+}
+
+CompanyOwner::CompanyOwner(const string & companyName = "")
+{
+	this->companyName = companyName;
 }
 
 CompanyOwner::~CompanyOwner(){}
 	
-string getCompanyName()
+string CompanyOwner::getCompanyName() const
 {
 	return companyName;
 }
 	
-void setCompanyName(string companyName)
+void CompanyOwner::setCompanyName(const string & companyName)
 {
-	this.companyName = companyName;
+	this->companyName = companyName;
 }
 	
-void addCleaning(Cleaning cleaning)
-{
-	
-}
-	
-list getEvolution(time_t tdebut, time_t tfin, long sensorId)
+void CompanyOwner::addCleaning(const Cleaning & cleaning)
 {
 	
 }
 	
-void signUp(CompanyOwner companyOwner)
+list CompanyOwner::getEvolution(const time_t & tdebut, const time_t & tfin, const long & sensorId) const
 {
 	
 }
 	
-bool uploadData(list<Measure> data)
+void CompanyOwner::signUp(const CompanyOwner & companyOwner)
+{
+	
+}
+	
+bool CompanyOwner::uploadData(list<Measure> data)
 {
 	
 }

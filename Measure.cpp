@@ -4,10 +4,10 @@ using namespace std;
 #include <ctime>
 
 Measure::Measure(){
-	value=NULL;
-	sensorId=NULL;
-	attributeId=NULL;
-	time=NULL;
+	value = 0.O;
+	sensorId = 0;
+	attributeId = 0;
+	time = 0;
 }
 
 Measure::Measure(time_t time, long sensorId, long attributeId, double value){

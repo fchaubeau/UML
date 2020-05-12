@@ -1,4 +1,6 @@
-#pragma once
+#if ! defined ( DATA_MANAGER_H )
+#define DATA_MANAGER_H
+
 #include <vector>
 
 #include "User.h"
@@ -18,4 +20,6 @@ public:
 	vector<CompanyOwner> getCompanyOwners();
 	vector<Employee> getEmployees();
 };
+
+#endif //DATA_MANAGER_H
 

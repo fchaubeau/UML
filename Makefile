@@ -2,7 +2,7 @@ ECHO = @echo
 RM = rm
 COMP = g++
 EDL = g++
-CPPFLAGS = -ansi -pedantic -Wall -Werror
+CPPFLAGS = -ansi -pedantic -Wall -Werror -std=c++11
 PROGS = Exe TestEmployee
 .O = CompanyOwner.o Employee.o Measure.o Sensor.o MeasureType.o User.o DataManager.o
 

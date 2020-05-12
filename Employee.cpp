@@ -1,4 +1,5 @@
 #include <iostream>
+
 using namespace std;
 
 #include "Employee.h"
@@ -15,7 +16,7 @@ Employee::Employee(const Employee& anEmployee)
 
 }
 
-Employee::Employee(string mail, string name, string password, string tel, int point)
+Employee::Employee(const string & mail = "", const string & name = "", const string & password = "", const string & tel = "", const int & point = 0)
 {
     this->mail = mail;
     this->name = name;
@@ -24,22 +25,21 @@ Employee::Employee(string mail, string name, string password, string tel, int po
     this->point = point;
 }
 
+Employee::~Employee() {}
 
-Employee::Employee()
-
+double Employee::getMeanAirQuality(const pair<double, double> & center, const double & radius, const time_t & t) const
 {
-#ifdef MAP
-    cout << "Appel au constructeur de <Ensemble>" << endl;
-#endif
+    return 0.0;
 }
 
-
-Employee::~Employee()
-{
-}
-
-double Employee::getMeanAirQUalityTimeSpawn(pair<double, double> center, double radius, time_t tdebut, time_t tFin)
+double Employee::getMeanAirQUalityTimeSpawn(const pair<double, double> & center, const double & radius, const time_t & tdebut, const time_t & tFin) const
 {
     
     return 0.0;
+}
+
+list<Sensor> Employee::getSimilarSensor(const Sensor & s) const
+{
+
+    return nullptr;
 }

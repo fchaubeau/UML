@@ -7,18 +7,20 @@ class CompanyOwner
 {
 
 public : 
-	CompanyOwner(string companyName = "");
+	CompanyOwner(const CompanyOwner & companyOwner);
+	CompanyOwner(const string & companyName);
 	virtual ~CompanyOwner();
-	string getCompanyName();
-	void setCompanyName(string companyName);
-	void addCleaning(Cleaning cleaning);
-	list getEvolution(time_t tdebut, time_t tfin, long sensorId);
-	void signUp(CompanyOwner companyOwner);
+
+	string getCompanyName() const;
+	void setCompanyName(const string & companyName);
+	void addCleaning(const Cleaning & cleaning);
+	list getEvolution(const time_t & tdebut, const time_t & tfin, const long & sensorId) const;
+	void signUp(const CompanyOwner & companyOwner);
 	bool uploadData(list<Measure> data);
 	
-private : 
+protected : 
 	string companyName;
 	
 };
 
-#endif
+#endif //COMPANY_OWNER_H
