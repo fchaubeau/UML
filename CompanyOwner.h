@@ -6,6 +6,7 @@ using namespace std;
 #include<string>
 
 #include "Cleaning.h"
+#include "Measure.h"
 
 class CompanyOwner
 {
