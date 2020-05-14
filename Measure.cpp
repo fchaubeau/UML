@@ -1,18 +1,25 @@
 using namespace std;
+
 #include <iostream>
-#include "Measure.h"
 #include <ctime>
 
-Measure::Measure(){
-	value = 0.O;
-	sensorId = 0;
-	attributeId = 0;
-	time = 0;
+#include "Measure.h"
+
+
+Measure::Measure(const time_t & time = 0, const long & sensorId = 0, const long & attributeId = 0, const double & value = 0.0)
+{
+	this->sensorId = sensorId;
+	this->attributeId = attributeId;
+	this->value = value;
+	this->time = time;
 }
 
-Measure::Measure(time_t time, long sensorId, long attributeId, double value){
-	this->sensorId=sensorId;
-	this->attributeId=attributeId;
-	this->value=value;
-	this->time=time;
+Measure::Measure(const Measure & measure)
+{
+	this->sensorId = measure.sensorId;
+	this->attributeId = measure.attributeId;
+	this->value = measure.value;
+	this->time = measure.time;
 }
+
+Measure::~Measure(){}

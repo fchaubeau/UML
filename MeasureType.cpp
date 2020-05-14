@@ -3,14 +3,16 @@ using namespace std;
 #include "MeasureType.h"
 #include <ctime>
 
-MeasureType::MeasureType(){
-	unit="";
-	attributeId=NULL;
-	description="";
+MeasureType::MeasureType(const MeasureType & measureType){
+	this->attributeId = measureType.attributeId;
+	this->unit = measureType.unit;
+	this->description = measureType.description;
 }
 
-MeasureType::MeasureType(long attributeId, string unit, string description){
+MeasureType::MeasureType(const long & attributeId = 0, const string & unit = "", const string & description = ""){
 	this->attributeId=attributeId;
 	this->unit=unit;
 	this->description=description;
 }
+
+MeasureType::~MeasureType() {}

@@ -8,7 +8,7 @@
 #include "Sensor.h"
 #include "CompanyOwner.h"
 
-
+using namespace std;
 class Employee : User
 {
 
