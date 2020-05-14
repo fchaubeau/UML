@@ -3,6 +3,10 @@
 
 using namespace std;
 
+#include<string>
+
+#include "Cleaning.h"
+
 class CompanyOwner
 {
 

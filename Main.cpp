@@ -1,17 +1,14 @@
 #include <iostream>
-
-//#include "Employee.h"
 #include <ctime>
+#include <string>
+
+#include "Employee.h"
 using namespace std;
 
 int main(int argc, char* argv[])
 {
-    int a = 0;
-    long b = 0;
-    char c = 0;
-    double d = 0;
-    time_t temps = 0;
-    cout << "temps =  " << temps << endl;
-    cout << "a = " << a << " b = " << b << " c = " << c << " d = " << d << endl;
+    Employee* emp = new Employee(string("f.chaubeau@gmail.com"), string("Chaubeau"), string("1234"), string("0123456789"), 0);
+    cout << emp->toString() << endl;
+    delete emp;
     return 0;
 }

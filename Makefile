@@ -3,7 +3,7 @@ RM = rm
 COMP = g++
 EDL = g++
 CPPFLAGS = -ansi -pedantic -Wall -Werror -std=c++11
-PROGS = Exe TestEmployee
+PROGS = Exe
 .O = CompanyOwner.o Employee.o Measure.o Sensor.o MeasureType.o User.o DataManager.o
 
 all: $(PROGS)
@@ -44,7 +44,7 @@ Exe: $(.O)
 	$(ECHO) "edl de $^"
 	$(COMP) -o $@ $^
 
-TestEmployee : Main.o Employee.o
+TestEmployee : Main.o User.o Employee.o
 	$(ECHO) "edl de $^"
 	$(COMP) -o $@ $^
 

@@ -1,4 +1,5 @@
-#pragma once
+#if ! defined ( USER_H )
+#define USER_H
 
 #include <string>
 #include <fstream>
@@ -16,13 +17,15 @@ protected:
 	string tel;
 
 public:
-	User();
-	User(string mail, string name, string password, string tel);
-	~User();
+	User(const User & user);
+	User(const string & mail, const string & name, const string & password, const string & tel);
+	virtual ~User();
 
-	bool logIn(string mail, string password);
-	bool logOut();
-	bool modifyPassword(string newPassword);
-	virtual bool menu();
+	bool LogIn(const string & mail, const string & password);
+	bool LogOut();
+	bool ModifyPassword(const string & newPassword);
+	virtual bool Menu();
 };
+
+#endif //USER_H
 

@@ -1,27 +1,22 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 #include "Employee.h"
 
 
-Employee::Employee(const Employee& anEmployee)
+Employee::Employee(const Employee& anEmployee) :
+User(anEmployee.mail, anEmployee.name, anEmployee.password, anEmployee.tel)
 
 {
-    mail = anEmployee.mail;
-    name = anEmployee.name;
-    password = anEmployee.password;
-    tel = anEmployee.tel;
     point = anEmployee.point;
 
 }
 
-Employee::Employee(const string & mail = "", const string & name = "", const string & password = "", const string & tel = "", const int & point = 0)
+Employee::Employee(const string & mail = "", const string & name = "", const string & password = "", const string & tel = "", const int & point = 0) :
+User(mail,name, password, tel)
 {
-    this->mail = mail;
-    this->name = name;
-    this->password = password;
-    this->tel = tel;
     this->point = point;
 }
 
@@ -40,6 +35,25 @@ double Employee::getMeanAirQUalityTimeSpawn(const pair<double, double> & center,
 
 list<Sensor> Employee::getSimilarSensor(const Sensor & s) const
 {
+    list<Sensor> toReturn;
+    return toReturn;
+}
 
-    return nullptr;
+bool Employee::Menu()
+{
+    return true;
+}
+
+string Employee::toString() const
+{
+    string toReturn = "Employee : ";
+    toReturn += "name = ";
+    toReturn += this->name;
+    toReturn += ", mail = ";
+    toReturn += this->mail;
+    toReturn += ", password = ";
+    toReturn += this->password;
+    toReturn += ", tel = ";
+    toReturn += this->tel;
+    return toReturn;
 }

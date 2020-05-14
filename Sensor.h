@@ -1,40 +1,45 @@
-#if ! defined ( Sensor_H )
-#define Sensor_H
+#if ! defined ( SENSOR_H )
+#define SENSOR_H
+
+#include <string>
+
+using namespace std;
+
 class Sensor{
 
 public:
-	Sensor();
-	Sensor(long sensorId, double latitude, double longitude, string description);
+	Sensor(const Sensor & sensor);
+	Sensor(const long & sensorId, const double & latitude, const double & longitude, const string & description);
 	~Sensor();
-	double getLatitude(){
+	double GetLatitude() const {
 		return latitude;
 	}
 
-	long getSensorId(){
+	long GetSensorId() const{
 		return sensorId;
 	}
 
-	double getLongitude(){
+	double GetLongitude() const {
 		return longitude;
 	}
 	
-	string getDescription(){
+	string GetDescription() const {
 		return description;
 	}
 	
-	void setLatitude(double latitude){
+	void SetLatitude(const double & latitude){
 		this->latitude=latitude;
 	}
 
-	void setSensorId(long attributeId){
+	void SetSensorId(const long & attributeId){
 		this->sensorId=sensorId;
 	}
 
-	void setLongitude(double longitude){
+	void SetLongitude(const double & longitude){
 		this->longitude=longitude;
 	}
 	
-	void setDescription(string description){
+	void SetDescription(const string & description){
 		this->description=description;
 	}
 	
@@ -45,4 +50,4 @@ protected:
 	string description;
 };
 
-#endif
+#endif //SENSOR_H
