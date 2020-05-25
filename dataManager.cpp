@@ -2,7 +2,6 @@
 #include <fstream>
 #include <iostream>
 #include <string>
-#include <ctime>
 
 #define _XOPEN_SOURCE
 #include <time.h>
@@ -67,7 +66,7 @@ vector<Sensor> DataManager::getSensors() {
 		}
 		attributs.push_back(line.substr(previous, current - previous));
 
-		Sensor toAdd(stol(attributs[0]), stod(attributs[1]), stod(attributs[2]), attributs[3]);
+		Sensor toAdd(attributs[0], stod(attributs[1]), stod(attributs[2]), attributs[3]);
 		sensors.push_back(toAdd);
 	}
 	file.close();
@@ -96,7 +95,7 @@ vector<MeasureType> DataManager::getMeasureTypes()
 		}
 		attributs.push_back(line.substr(previous, current - previous));
 
-		MeasureType toAdd(stol(attributs[0]), attributs[1], attributs[2]);
+		MeasureType toAdd(attributs[0], attributs[1], attributs[2]);
 		measureTypes.push_back(toAdd);
 	}
 	file.close();
@@ -106,7 +105,7 @@ vector<MeasureType> DataManager::getMeasureTypes()
 vector<Measure> DataManager::getMeasures()
 {
 	vector<Measure> measures;
-	ifstream file("measures.csv");
+	ifstream file("measurements.csv");
 	while (!file.eof())
 	{
 		string line;
@@ -124,18 +123,20 @@ vector<Measure> DataManager::getMeasures()
 			current = line.find(';', previous);
 		}
 		attributs.push_back(line.substr(previous, current - previous));
-		tm time = { 0 }; 
+		struct tm time; 
 		int yy, month, dd, hh, mm, ss;
-		sscanf(attributs[0].c_str(), "%d/%d/%d %d:%d:%d", &yy, &month, &dd, &hh, &mm, &ss);
-		time.tm_year = yy;
+		sscanf(attributs[0].c_str(), "%d-%d-%d %d:%d:%d", &yy, &month, &dd, &hh, &mm, &ss);
+		time.tm_year = yy - 1900;
 		time.tm_mon = month;
 		time.tm_mday = dd;
 		time.tm_hour = hh;
 		time.tm_min = mm;
 		time.tm_sec = ss;
+		time.tm_isdst = 0;
 		time_t timeOfMeasurement = mktime(&time);
 
-		Measure toAdd(stol(attributs[0]), stol(attributs[1]), stol(attributs[2]), stod(attributs[3]));
+		
+		Measure toAdd(timeOfMeasurement, attributs[1], attributs[2], stod(attributs[3]));
 		measures.push_back(toAdd);
 	}
 	file.close();
