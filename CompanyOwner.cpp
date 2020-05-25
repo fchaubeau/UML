@@ -33,7 +33,12 @@ void CompanyOwner::setCompanyName(const string & companyName)
 	
 void CompanyOwner::addCleaning(const Cleaning & cleaning)
 {
-	
+	ofstream file("cleaners.csv");
+	if(file.is_open())
+	{
+		file << "Cleaner" << cleaning.cleanerId << ";" << cleaning.latitude << ";" << cleaning.longitude << ";" << cleaning.description << ";" << cleaning.startTime << ";" << cleaning.stopTime << ";\n";
+	}
+	file.close();
 }
 	
 list<int> CompanyOwner::getEvolution(const time_t & tdebut, const time_t & tfin, const long & sensorId) const
