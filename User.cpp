@@ -43,11 +43,12 @@ bool User::LogIn(const string & mail, const string & password)
 
 bool User::ModifyPassword(const string & newPassword)
 {	
-	if(this.password!=newPassword){
+	if(this->password!=newPassword){
 		this->password = password;
 		return true;
 	}else{
 		printf("Error: Password Identique");
+		return false; 
 	}
 }
 
