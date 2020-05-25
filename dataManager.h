@@ -4,6 +4,11 @@
 #include <vector>
 
 #include "User.h"
+#include "CompanyOwner.h"
+#include "Measure.h"
+#include "Sensor.h"
+#include "MeasureType.h"
+#include "Employee.h"
 
 using namespace std;
 
