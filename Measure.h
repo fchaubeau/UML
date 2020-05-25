@@ -1,39 +1,45 @@
-#if ! defined ( Measure_H )
-#define Measure_H
+#if ! defined ( MEASURE_H )
+#define MEASURE_H
+
+#include <ctime>
+
+using namespace std;
+
 class Measure{
 
 public:
-	Measure();
-	Measure(time_t time, long sensorId, long attributeId, double value);
-	long getSensorId(){
+	Measure(const Measure & measure);
+	Measure(const time_t & time, const long & sensorId, const long & attributeId, const double & value);
+	~Measure();
+	long getSensorId() const{
 		return sensorId;
 	}
 
-	long getAttributeId(){
+	long getAttributeId() const {
 		return attributeId;
 	}
 
-	double getValue(){
+	double getValue() const {
 		return value;
 	}
 	
-	time_t getTime(){
+	time_t getTime() const{
 		return time;
 	}
 	
-	void setSensorId(long sensorId){
+	void setSensorId(const long & sensorId){
 		this->sensorId=sensorId;
 	}
 
-	void setAttributeId(long attributeId){
+	void setAttributeId(const long & attributeId){
 		this->attributeId=attributeId;
 	}
 
-	void setValue(double value){
+	void setValue(const double & value){
 		this->value=value;
 	}
 	
-	void setTime(time_t time){
+	void setTime(const time_t & time){
 		this->time=time;
 	}
 	
@@ -44,4 +50,4 @@ protected:
 	double value;
 };
 
-#endif
+#endif //MEASURE_H

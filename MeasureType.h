@@ -1,31 +1,37 @@
-#if ! defined ( MeasureType_H )
-#define MeasureType_H
+#if ! defined ( MEASURE_TYPE_H )
+#define MEASURE_TYPE_H
+
+#include <string>
+
+using namespace std;
+
 class MeasureType{
 
 public:
-	MeasureType();
-	MeasureType(long attributeId, string unit, string description);
-	long getAttributeId(){
+	MeasureType(const MeasureType & measureType);
+	MeasureType(const long & attributeId, const string & unit, const string & description);
+	~MeasureType();
+	long GetAttributeId() const {
 		return attributeId;
 	}
 
-	string getDescription(){
+	string GetDescription() const {
 		return description;
 	}
 	
-	string getUnit(){
+	string GetUnit() const {
 		return unit;
 	}
 
-	void setAttributeId(long attributeId){
+	void SetAttributeId(const long & attributeId){
 		this->attributeId=attributeId;
 	}
 
-	void setUnit(string unit){
+	void SetUnit(const string & unit){
 		this->unit=unit;
 	}
 	
-	void setDescription(string description){
+	void SetDescription(const string & description){
 		this->description=description;
 	}
 	
@@ -35,4 +41,4 @@ protected:
 	string description;
 };
 
-#endif
+#endif //MEASURE_TYPE_H
