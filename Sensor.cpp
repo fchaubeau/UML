@@ -13,7 +13,7 @@ Sensor::Sensor(const Sensor & sensor)
 	this->description = sensor.description;
 }
 
-Sensor::Sensor(const long & sensorId = 0, const double & latitude = 0.0, const double & longitude = 0, const string & description = "")
+Sensor::Sensor(const string & sensorId = 0, const double & latitude = 0.0, const double & longitude = 0, const string & description = "")
 {
 	this->sensorId = sensorId;
 	this->latitude = latitude;
