@@ -9,7 +9,7 @@ MeasureType::MeasureType(const MeasureType & measureType){
 	this->description = measureType.description;
 }
 
-MeasureType::MeasureType(const long & attributeId = 0, const string & unit = "", const string & description = ""){
+MeasureType::MeasureType(const string & attributeId = 0, const string & unit = "", const string & description = ""){
 	this->attributeId=attributeId;
 	this->unit=unit;
 	this->description=description;
