@@ -36,9 +36,9 @@ void CompanyOwner::addCleaning(const Cleaning & cleaning)
 	
 }
 	
-list CompanyOwner::getEvolution(const time_t & tdebut, const time_t & tfin, const long & sensorId) const
+list<int> CompanyOwner::getEvolution(const time_t & tdebut, const time_t & tfin, const long & sensorId) const
 {
-	
+	return *new list<int>();
 }
 	
 void CompanyOwner::signUp(const CompanyOwner & companyOwner)
@@ -48,6 +48,6 @@ void CompanyOwner::signUp(const CompanyOwner & companyOwner)
 	
 bool CompanyOwner::uploadData(list<Measure> data)
 {
-	
+	return true;
 }
 
