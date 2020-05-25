@@ -19,7 +19,7 @@ public :
 	string getCompanyName() const;
 	void setCompanyName(const string & companyName);
 	void addCleaning(const Cleaning & cleaning);
-	list getEvolution(const time_t & tdebut, const time_t & tfin, const long & sensorId) const;
+	list getEvolution(const time_t & tdebut, const time_t & tfin, const string & sensorId) const;
 	void signUp(const CompanyOwner & companyOwner);
 	bool uploadData(list<Measure> data);
 	
