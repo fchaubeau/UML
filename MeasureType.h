@@ -9,9 +9,9 @@ class MeasureType{
 
 public:
 	MeasureType(const MeasureType & measureType);
-	MeasureType(const long & attributeId, const string & unit, const string & description);
+	MeasureType(const string & attributeId, const string & unit, const string & description);
 	~MeasureType();
-	long GetAttributeId() const {
+	string GetAttributeId() const {
 		return attributeId;
 	}
 
@@ -23,7 +23,7 @@ public:
 		return unit;
 	}
 
-	void SetAttributeId(const long & attributeId){
+	void SetAttributeId(const string & attributeId){
 		this->attributeId=attributeId;
 	}
 
@@ -37,7 +37,7 @@ public:
 	
 protected:
 	string unit;
-	long attributeId;
+	string attributeId;
 	string description;
 };
 
