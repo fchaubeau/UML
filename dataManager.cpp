@@ -2,6 +2,10 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <ctime>
+
+#define _XOPEN_SOURCE
+#include <time.h>
 
 using namespace std;
 
@@ -63,7 +67,7 @@ vector<Sensor> DataManager::getSensors() {
 		}
 		attributs.push_back(line.substr(previous, current - previous));
 
-		Sensor toAdd(attributs[0], attributs[1], attributs[2], attributs[3]);
+		Sensor toAdd(stol(attributs[0]), stod(attributs[1]), stod(attributs[2]), attributs[3]);
 		sensors.push_back(toAdd);
 	}
 	file.close();
@@ -92,7 +96,7 @@ vector<MeasureType> DataManager::getMeasureTypes()
 		}
 		attributs.push_back(line.substr(previous, current - previous));
 
-		MeasureType toAdd(attributs[0], attributs[1], attributs[2]);
+		MeasureType toAdd(stol(attributs[0]), attributs[1], attributs[2]);
 		measureTypes.push_back(toAdd);
 	}
 	file.close();
@@ -120,8 +124,18 @@ vector<Measure> DataManager::getMeasures()
 			current = line.find(';', previous);
 		}
 		attributs.push_back(line.substr(previous, current - previous));
+		tm time = { 0 }; 
+		int yy, month, dd, hh, mm, ss;
+		sscanf(attributs[0].c_str(), "%d/%d/%d %d:%d:%d", &yy, &month, &dd, &hh, &mm, &ss);
+		time.tm_year = yy;
+		time.tm_mon = month;
+		time.tm_mday = dd;
+		time.tm_hour = hh;
+		time.tm_min = mm;
+		time.tm_sec = ss;
+		time_t timeOfMeasurement = mktime(&time);
 
-		Measure toAdd(attributs[0], attributs[1], attributs[2], attributs[3]);
+		Measure toAdd(stol(attributs[0]), stol(attributs[1]), stol(attributs[2]), stod(attributs[3]));
 		measures.push_back(toAdd);
 	}
 	file.close();
@@ -179,7 +193,7 @@ vector<Employee> DataManager::getEmployees()
 		}
 		attributs.push_back(line.substr(previous, current - previous));
 
-		Employee toAdd(attributs[0], attributs[1], attributs[2], attributs[3], attributs[4]);
+		Employee toAdd(attributs[0], attributs[1], attributs[2], attributs[3], stoi(attributs[4]));
 		employees.push_back(toAdd);
 	}
 	file.close();
