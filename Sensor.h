@@ -9,13 +9,13 @@ class Sensor{
 
 public:
 	Sensor(const Sensor & sensor);
-	Sensor(const long & sensorId, const double & latitude, const double & longitude, const string & description);
+	Sensor(const string & sensorId, const double & latitude, const double & longitude, const string & description);
 	~Sensor();
 	double GetLatitude() const {
 		return latitude;
 	}
 
-	long GetSensorId() const{
+	string GetSensorId() const{
 		return sensorId;
 	}
 
@@ -31,7 +31,7 @@ public:
 		this->latitude=latitude;
 	}
 
-	void SetSensorId(const long & attributeId){
+	void SetSensorId(const string & attributeId){
 		this->sensorId=sensorId;
 	}
 
@@ -44,7 +44,7 @@ public:
 	}
 	
 protected:
-	long sensorId;
+	string sensorId;
 	double latitude;
 	double longitude;
 	string description;

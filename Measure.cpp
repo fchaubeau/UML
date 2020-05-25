@@ -6,7 +6,7 @@ using namespace std;
 #include "Measure.h"
 
 
-Measure::Measure(const time_t & time = 0, const long & sensorId = 0, const long & attributeId = 0, const double & value = 0.0)
+Measure::Measure(const time_t & time = 0, const string & sensorId = 0, const long & attributeId = 0, const double & value = 0.0)
 {
 	this->sensorId = sensorId;
 	this->attributeId = attributeId;
