@@ -4,6 +4,20 @@
 using namespace std;
 
 #include "Employee.h"
+#include "dataManager.h"
+#include "Measure.h"
+#include "Sensor.h"
+
+static vector<int> getSensorIdInAnArea(const pair<double,double> & center, const double & radius)
+{
+    vector<int> toReturn;
+    vector<Sensor> sensors = dataManager->getSensors();
+    for(unsigned int i = 0; i < sensors.size(); i++)
+    {
+        if(center.first)
+    }
+    return toReturn;
+}
 
 
 Employee::Employee(const Employee& anEmployee) :
@@ -24,6 +38,9 @@ Employee::~Employee() {}
 
 double Employee::getMeanAirQuality(const pair<double, double> & center, const double & radius, const time_t & t) const
 {
+    DataManager* dataManager = new DataManager();
+    vector<Measure> measures = dataManager->getMeasures();
+    vector<int> sensorsId = dataManager->getSensorIdInAnArea();
     return 0.0;
 }
 
