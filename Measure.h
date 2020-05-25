@@ -9,13 +9,13 @@ class Measure{
 
 public:
 	Measure(const Measure & measure);
-	Measure(const time_t & time, const long & sensorId, const long & attributeId, const double & value);
+	Measure(const time_t & time, const string & sensorId, const string & attributeId, const double & value);
 	~Measure();
-	long getSensorId() const{
+	string getSensorId() const{
 		return sensorId;
 	}
 
-	long getAttributeId() const {
+	string getAttributeId() const {
 		return attributeId;
 	}
 
@@ -27,11 +27,11 @@ public:
 		return time;
 	}
 	
-	void setSensorId(const long & sensorId){
+	void setSensorId(const string & sensorId){
 		this->sensorId=sensorId;
 	}
 
-	void setAttributeId(const long & attributeId){
+	void setAttributeId(const string & attributeId){
 		this->attributeId=attributeId;
 	}
 
@@ -45,8 +45,8 @@ public:
 	
 protected:
 	time_t time;
-	long sensorId;
-	long attributeId;
+	string sensorId;
+	string attributeId;
 	double value;
 };
 

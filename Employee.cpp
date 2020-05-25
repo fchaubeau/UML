@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 using namespace std;
 
@@ -8,13 +9,17 @@ using namespace std;
 #include "Measure.h"
 #include "Sensor.h"
 
-static vector<int> getSensorIdInAnArea(const pair<double,double> & center, const double & radius)
+static vector<int> getSensorIdInAnArea(const pair<double,double> & center, const double & radius) //Center = <latitude,longitude>
 {
+    DataManager* dataManager = new DataManager();
     vector<int> toReturn;
     vector<Sensor> sensors = dataManager->getSensors();
     for(unsigned int i = 0; i < sensors.size(); i++)
     {
-        if(center.first)
+        if(sqrt(pow(abs(center.first-sensors[i].GetLatitude()),2) + pow(abs(center.second-sensors[i].GetLongitude()),2)) < radius)
+        {
+            toReturn.push_back(sensors[i].GetSensorId);
+        } 
     }
     return toReturn;
 }
@@ -44,7 +49,7 @@ double Employee::getMeanAirQuality(const pair<double, double> & center, const do
     return 0.0;
 }
 
-double Employee::getMeanAirQUalityTimeSpawn(const pair<double, double> & center, const double & radius, const time_t & tdebut, const time_t & tFin) const
+double Employee::getMeanAirQualityTimeSpawn(const pair<double, double> & center, const double & radius, const time_t & tdebut, const time_t & tFin) const
 {
     
     return 0.0;

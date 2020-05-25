@@ -18,7 +18,7 @@ public:
     virtual ~Employee();
 
     double getMeanAirQuality(const pair<double, double> & center, const double & radius, const time_t & t) const;
-    double getMeanAirQUalityTimeSpawn(const pair<double, double> & center, const double & radius, const time_t & tdebut, const time_t & tFin) const;
+    double getMeanAirQualityTimeSpawn(const pair<double, double> & center, const double & radius, const time_t & tdebut, const time_t & tFin) const;
     list<Sensor> getSimilarSensor(const Sensor & s) const;
     bool Menu();
     string toString() const;

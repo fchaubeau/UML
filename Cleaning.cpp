@@ -13,7 +13,7 @@ Cleaning::Cleaning(const Cleaning & cleaning)
     stopTime = cleaning.stopTime;
 }
 
-Cleaning::Cleaning(const long & cleanerId = 0, const double & latitude = 0.0, const double & longitude = 0.0, const string & description = "", const time_t & startTime = 0, const time_t & stopTime = 0)
+Cleaning::Cleaning(const string & cleanerId = 0, const double & latitude = 0.0, const double & longitude = 0.0, const string & description = "", const time_t & startTime = 0, const time_t & stopTime = 0)
 {
     this->cleanerId = cleanerId;
     this->latitude = latitude;
