@@ -7,7 +7,6 @@ using namespace std;
 
 #include "dataManager.h"
 #include "Employee.h"
-#include "dataManager.h"
 #include "Measure.h"
 #include "Sensor.h"
 
