@@ -42,9 +42,8 @@ User(mail,name, password, tel)
 
 Employee::~Employee() {}
 
-vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, const double & radius, const time_t & t) const
+vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, const double & radius, const time_t & t, const DataManager & dataManager) const
 {
-    DataManager* dataManager = new DataManager();
     vector<Measure> measures = dataManager->getMeasures();
     vector<MeasureType> measuresType = dataManager->getMeasureTypes();
     vector<string> measuresTypeId;
@@ -67,9 +66,6 @@ vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, 
                 {
                     if(measures[i].getAttributeId() == measuresTypeId[k])
                     {
-
-                        //toReturn[k] += measures[i];
-
                         dataSum[k] += measures[i].getValue();
                         sizeOfData[k]++;
                     }
