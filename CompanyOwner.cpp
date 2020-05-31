@@ -37,7 +37,7 @@ void CompanyOwner::addCleaning(const Cleaning & cleaning)
 	ofstream file("cleaners.csv");
 	if(file.is_open())
 	{
-		file << "Cleaner" << cleaning.getcleanerId() << ";" << cleaning.getLatitude() << ";" << cleaning.getLongitude() << ";" << cleaning.getDescription() << ";" << cleaning.getStartTime() << ";" << cleaning.getStopTime() << ";\n";
+		file << "Cleaner" << cleaning.getCleanerId() << ";" << cleaning.getLatitude() << ";" << cleaning.getLongitude() << ";" << cleaning.getDescription() << ";" << cleaning.getStartTime() << ";" << cleaning.getStopTime() << ";\n";
 	}
 	file.close();
 }
