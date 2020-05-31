@@ -16,7 +16,7 @@ Cleaning.o: Cleaning.cpp Cleaning.h
 	$(ECHO) "compilation de $<"
 	$(COMP) $(CPPFLAGS) -c -o $@ $<
 
-DataManager.o: dataManager.cpp dataManager.h
+DataManager.o: DataManager.cpp DataManager.h
 	$(ECHO) "compilation de $<"
 	$(COMP) $(CPPFLAGS) -c -o $@ $<
 

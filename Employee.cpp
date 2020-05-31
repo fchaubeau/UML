@@ -6,15 +6,11 @@
 using namespace std;
 
 #include "Employee.h"
-#include "dataManager.h"
-#include "Measure.h"
-#include "Sensor.h"
 
-static vector<string> getSensorIdInAnArea(const pair<double,double> & center, const double & radius) //Center = <latitude,longitude>
+static vector<string> getSensorIdInAnArea(const pair<double,double> & center, const double & radius, DataManager & dataManager) //Center = <latitude,longitude>
 {
-    DataManager* dataManager = new DataManager();
     vector<string> toReturn;
-    vector<Sensor> sensors = dataManager->getSensors();
+    vector<Sensor> sensors = dataManager.getSensors();
     for(unsigned int i = 0; i < sensors.size(); i++)
     {
         if(sqrt(pow(abs(center.first-sensors[i].GetLatitude()),2) + pow(abs(center.second-sensors[i].GetLongitude()),2)) < radius)
@@ -42,10 +38,10 @@ User(mail,name, password, tel)
 
 Employee::~Employee() {}
 
-vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, const double & radius, const time_t & t, const DataManager & dataManager) const
+vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, const double & radius, const time_t & t, DataManager & dataManager) const
 {
-    vector<Measure> measures = dataManager->getMeasures();
-    vector<MeasureType> measuresType = dataManager->getMeasureTypes();
+    vector<Measure> measures = dataManager.getMeasures();
+    vector<MeasureType> measuresType = dataManager.getMeasureTypes();
     vector<string> measuresTypeId;
     vector<double> dataSum;
     vector<int> sizeOfData;
@@ -55,7 +51,7 @@ vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, 
         dataSum.push_back(0.0);
         sizeOfData.push_back(0);
     }
-    vector<string> sensorsId = getSensorIdInAnArea(center,radius);
+    vector<string> sensorsId = getSensorIdInAnArea(center, radius, dataManager);
     for(unsigned int i = 0; i < measures.size(); i++)
     {
         for(unsigned int j = 0; j < sensorsId.size(); j++)
