@@ -5,7 +5,9 @@
 
 using namespace std;
 
+#include "dataManager.h"
 #include "Employee.h"
+
 
 static vector<string> getSensorIdInAnArea(const pair<double,double> & center, const double & radius, DataManager & dataManager) //Center = <latitude,longitude>
 {
