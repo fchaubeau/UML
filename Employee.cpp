@@ -126,7 +126,7 @@ vector<double> Employee::getMeanAirQualityTimeSpawn(const pair<double, double> &
 		meanAirQuality = getMeanAirQuality(center, radius, increment, dataManager);
 		timeSpanData.push_back(meanAirQuality);
 		tm = gmtime(&increment);
-		tm -> tm_day++;
+		tm -> tm_mday++;
 		increment = mktime(tm);
 	}
 	vector<double> meanAirQualityTimeSpan(meanAirQuality.size());
@@ -134,10 +134,10 @@ vector<double> Employee::getMeanAirQualityTimeSpawn(const pair<double, double> &
 	{
 		for(int j=0; j<timeSpanData[i].size(); j++)
 		{
-			meanAirQualityTimeSpan[j] += timeSpanData[i].[j];
+			meanAirQualityTimeSpan[j] += timeSpanData[i][j];
 		}
 	}
-	for(int i=0; i<meanAirQualityTimeSpan.size(); i++)
+	for(int i=0; i < meanAirQualityTimeSpan.size(); i++)
 	{
 		meanAirQualityTimeSpan[i] /= timeSpanData.size();
 	}
