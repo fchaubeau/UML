@@ -7,7 +7,8 @@
 #include <list>
 #include "User.h"
 #include "Sensor.h"
-#include "dataManager.h"
+#include "DataManager.h"
+#include "Cleaning.h"
 
 using namespace std;
 
