@@ -83,7 +83,7 @@ vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, 
 int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radiusAnalyse, const double & rateAmeliorationP1, const double & rateAmeliorationP2){        //Exemple P1=0.3 et P2=0.5
 	int longitude = cleaning.getLongitude();
 	int latitude = cleaning.getLatitude();
-	time_t startTime = cleaning.getstartTime();
+	time_t startTime = cleaning.getStartTime();
 	time_t stopTime = cleaning.getStopTime();
 	
   	pair<double,double> coordinate = make_pair(latitude,longitude);
