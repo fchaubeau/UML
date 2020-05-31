@@ -80,7 +80,7 @@ vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, 
     return dataSum;
 }
 
-int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radiusAnalyse, const double & rateAmeliorationP1, const double & rateAmeliorationP2, const DataManager dataManager){        //Exemple P1=0.3 et P2=0.5
+int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radiusAnalyse, const double & rateAmeliorationP1, const double & rateAmeliorationP2, const & DataManager dataManager){        //Exemple P1=0.3 et P2=0.5
 	int longitude = cleaning.getLongitude();
 	int latitude = cleaning.getLatitude();
 	time_t startTime = cleaning.getStartTime();
