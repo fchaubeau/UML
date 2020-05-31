@@ -67,7 +67,7 @@ vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, 
                 {
                     if(measures[i].getAttributeId() == measuresTypeId[k])
                     {
-                        toReturn[k] += measures[i];
+                        //toReturn[k] += measures[i];
                         sizeOfData[k]++;
                     }
                 }

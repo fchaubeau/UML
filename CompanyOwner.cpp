@@ -37,16 +37,16 @@ void CompanyOwner::addCleaning(const Cleaning & cleaning)
 	ofstream file("cleaners.csv");
 	if(file.is_open())
 	{
-		file << "Cleaner" << cleaning.getcleanerId() << ";" << cleaning.getLatitude() << ";" << cleaning.getLongitude() << ";" << cleaning.getDescription() << ";" << cleaning.getStartTime() << ";" << cleaning.getStopTime() << ";\n";
+		file << "Cleaner" << cleaning.getCleanerId() << ";" << cleaning.getLatitude() << ";" << cleaning.getLongitude() << ";" << cleaning.getDescription() << ";" << cleaning.getStartTime() << ";" << cleaning.getStopTime() << ";\n";
 	}
 	file.close();
 }
 	
 list<int> CompanyOwner::getEvolution(const time_t & tdebut, const time_t & tfin, const string & sensorId) const
 {
-	DataManager dataManager = new DataManager();
-	vector<Measure> measures = dataManager.getMeasures();
-	return *new list<int>();
+	DataManager* dataManager = new DataManager();
+	vector<Measure> measures = dataManager->getMeasures();
+	return list<int>();
 }
 	
 void CompanyOwner::signUp(const CompanyOwner & companyOwner)
