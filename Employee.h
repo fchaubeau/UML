@@ -23,6 +23,7 @@ public:
     DataManager a();
     list<Sensor> getSimilarSensor(const Sensor & s) const;
     vector<double> getMeanAirQuality(const pair<double, double> & center, const double & radius, const time_t & t, DataManager & dataManager) const;
+    int analyseImpactNiveau(const Cleaning & cleaning, const double & radiusAnalyse, const double & rateAmeliorationP1, const double & rateAmeliorationP2)const;
     double getMeanAirQualityTimeSpawn(const pair<double, double> & center, const double & radius, const time_t & tdebut, const time_t & tFin) const;
     bool Menu();
     string toString() const;
