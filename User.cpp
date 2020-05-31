@@ -21,6 +21,15 @@ User::User(const string & mail = "", const string & name = "", const string & pa
 	this->tel = tel;
 }
 
+User &User::operator=(const User & source)
+{
+	if(&source != this)
+	{
+		*this = User(source);
+	}
+	return *this;
+} 
+
 
 User::~User() {}
 

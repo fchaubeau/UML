@@ -9,6 +9,7 @@ class Cleaning{
     public:
         Cleaning(const Cleaning & cleaning);
         Cleaning(const string & cleanerId, const double & latitude, const double & longitude, const string & description, const time_t & startTime, const time_t & stopTime);
+		Cleaning& operator=(const Cleaning & source);
         virtual ~Cleaning();
 
 		string getCleanerId() const

@@ -10,6 +10,7 @@ class Measure{
 public:
 	Measure(const Measure & measure);
 	Measure(const time_t & time, const string & sensorId, const string & attributeId, const double & value);
+	Measure& operator=(const Measure & source);
 	~Measure();
 	string getSensorId() const{
 		return sensorId;

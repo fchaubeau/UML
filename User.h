@@ -19,6 +19,7 @@ protected:
 public:
 	User(const User & user);
 	User(const string & mail, const string & name, const string & password, const string & tel);
+	User& operator=(const User & source);
 	virtual ~User();
 
 	bool LogIn(const string & mail, const string & password);

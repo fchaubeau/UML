@@ -16,3 +16,12 @@ MeasureType::MeasureType(const string & attributeId = 0, const string & unit = "
 }
 
 MeasureType::~MeasureType() {}
+
+MeasureType &MeasureType::operator=(const MeasureType & source)
+{
+	if(&source != this)
+	{
+		*this = MeasureType(source);
+	}
+	return *this;
+} 

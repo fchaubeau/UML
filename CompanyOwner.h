@@ -15,6 +15,7 @@ class CompanyOwner
 public : 
 	CompanyOwner(const CompanyOwner & companyOwner);
 	CompanyOwner(const string & companyName);
+	CompanyOwner& operator=(const CompanyOwner & source);
 	virtual ~CompanyOwner();
 
 	string getCompanyName() const;

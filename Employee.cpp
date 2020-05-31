@@ -40,15 +40,30 @@ User(mail,name, password, tel)
     this->point = point;
 }
 
+Employee &Employee::operator=(const Employee & source)
+{
+	if(&source != this)
+	{
+		*this = Employee(source);
+	}
+	return *this;
+} 
+
 Employee::~Employee() {}
 
 vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, const double & radius, const time_t & t, const DataManager & dataManager) const
 {
+    cout << "line0 Ok \n";
     vector<Measure> measures = dataManager.getMeasures();
+    cout << "line1 ok\n";
     vector<MeasureType> measuresType = dataManager.getMeasureTypes();
+    cout << "line2 ok\n";
     vector<string> measuresTypeId;
+    cout << "line3 ok\n";
     vector<double> dataSum;
+    cout << "line4 ok\n";
     vector<int> sizeOfData;
+    cout << "line5 ok\n";
     for(unsigned int i = 0; i < measuresType.size(); i++)
     {
         measuresTypeId.push_back(measuresType[i].GetAttributeId());

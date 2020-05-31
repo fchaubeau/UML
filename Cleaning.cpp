@@ -23,4 +23,13 @@ Cleaning::Cleaning(const string & cleanerId = 0, const double & latitude = 0.0, 
     this->stopTime = stopTime;
 }
 
+Cleaning &Cleaning::operator=(const Cleaning & source)
+{
+	if(&source != this)
+	{
+		*this = Cleaning(source);
+	}
+	return *this;
+} 
+
 Cleaning::~Cleaning(){}

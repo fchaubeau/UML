@@ -10,6 +10,7 @@ class Sensor{
 public:
 	Sensor(const Sensor & sensor);
 	Sensor(const string & sensorId, const double & latitude, const double & longitude, const string & description);
+	Sensor& operator=(const Sensor & source);
 	~Sensor();
 	double GetLatitude() const {
 		return latitude;

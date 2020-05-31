@@ -20,6 +20,7 @@ public:
 
     Employee(const Employee & anEmployee);
     Employee(const string & mail, const string & name, const string & password, const string & tel, const int & point);
+    Employee& operator=(const Employee & source);
     virtual ~Employee();
 
     list<Sensor> getSimilarSensor(const Sensor & s) const;

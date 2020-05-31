@@ -21,6 +21,15 @@ CompanyOwner::CompanyOwner(const string & companyName = "")
 }
 
 CompanyOwner::~CompanyOwner(){}
+
+CompanyOwner &CompanyOwner::operator=(const CompanyOwner & source)
+{
+	if(&source != this)
+	{
+		*this = CompanyOwner(source);
+	}
+	return *this;
+} 
 	
 string CompanyOwner::getCompanyName() const
 {

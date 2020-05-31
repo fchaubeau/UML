@@ -10,6 +10,7 @@ class MeasureType{
 public:
 	MeasureType(const MeasureType & measureType);
 	MeasureType(const string & attributeId, const string & unit, const string & description);
+	MeasureType& operator=(const MeasureType & source);
 	~MeasureType();
 	string GetAttributeId() const {
 		return attributeId;

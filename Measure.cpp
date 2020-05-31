@@ -23,3 +23,12 @@ Measure::Measure(const Measure & measure)
 }
 
 Measure::~Measure(){}
+
+Measure &Measure::operator=(const Measure & source)
+{
+	if(&source != this)
+	{
+		*this = Measure(source);
+	}
+	return *this;
+} 
