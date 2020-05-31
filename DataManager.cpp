@@ -1,21 +1,25 @@
-#include "dataManager.h"
+#include "DataManager.h"
 #include <fstream>
 #include <iostream>
 #include <string>
-
-#define _XOPEN_SOURCE
 #include <time.h>
 
 using namespace std;
 
 DataManager::DataManager()
 {
-	this->users = getUsers();
-	this->sensors = getSensors();
-	this->measureTypes = getMeasureTypes();
-	this->measures = getMeasures();
-	this->companyOwners = getCompanyOwners();
-	this->employees = getEmployees();
+	this->users = initUsers();
+	cout << "users ok" << endl;
+	this->sensors = initSensors();
+	cout << "sensors ok" << endl;
+	this->measures = initMeasures();
+	cout << "mesures ok" << endl;
+	this->companyOwners = initCompanyOwners();
+	cout << "compagny owner ok" << endl;
+	this->measureTypes = initMeasureTypes();
+	cout << "measures types ok" << endl;
+ 	//this->employees = initEmployees();
+	//cout << "employee ok" << endl;
 }
 
 
@@ -23,7 +27,7 @@ DataManager::~DataManager()
 {
 }
 
-vector<User> DataManager::getUsers() {
+vector<User> DataManager::initUsers() {
 	vector<User> users;
 	ifstream file("users.csv");
 	while (!file.eof())
@@ -51,7 +55,7 @@ vector<User> DataManager::getUsers() {
 	return users;
 }
 
-vector<Sensor> DataManager::getSensors() {
+vector<Sensor> DataManager::initSensors() {
 	vector<Sensor> sensors;
 	ifstream file("sensors.csv");
 	while (!file.eof())
@@ -79,10 +83,10 @@ vector<Sensor> DataManager::getSensors() {
 	return sensors;
 }
 
-vector<MeasureType> DataManager::getMeasureTypes()
+vector<MeasureType> DataManager::initMeasureTypes()
 {
 	vector<MeasureType> measureTypes;
-	ifstream file("measureTypes.csv");
+	ifstream file("attributes.csv");
 	while (!file.eof())
 	{
 		string line;
@@ -108,7 +112,7 @@ vector<MeasureType> DataManager::getMeasureTypes()
 	return measureTypes;
 }
 
-vector<Measure> DataManager::getMeasures()
+vector<Measure> DataManager::initMeasures()
 {
 	vector<Measure> measures;
 	ifstream file("measurements.csv");
@@ -149,10 +153,10 @@ vector<Measure> DataManager::getMeasures()
 	return measures;
 }
 
-vector<CompanyOwner> DataManager::getCompanyOwners()
+vector<CompanyOwner> DataManager::initCompanyOwners()
 {
 	vector<CompanyOwner> companyOwners;
-	ifstream file("companyOwners.csv");
+	ifstream file("providers.csv");
 	while (!file.eof())
 	{
 		string line;
@@ -178,10 +182,10 @@ vector<CompanyOwner> DataManager::getCompanyOwners()
 	return companyOwners;
 }
 
-vector<Employee> DataManager::getEmployees()
+vector<Employee> DataManager::initEmployees()
 {
 	vector<Employee> employees;
-	ifstream file("employees.csv");
+	ifstream file("xxxxxxx.csv");
 	while (!file.eof())
 	{
 		string line;

@@ -2,9 +2,9 @@ ECHO = @echo
 RM = rm
 COMP = g++
 EDL = g++
-CPPFLAGS = -ansi -pedantic -Wall -Wextra -std=c++11
+CPPFLAGS = ##-ansi -pedantic -Wall -Wextra -std=c++11
 PROGS = Exe
-.O = CompanyOwner.o Cleaning.o DataManager.o Employee.o Measure.o Sensor.o MeasureType.o User.o Main.o PrivateUser.o
+.O = CompanyOwner.o Cleaning.o DataManager.o Employee.o Measure.o Sensor.o MeasureType.o User.o Main.o
 
 all: $(PROGS)
 
@@ -16,7 +16,7 @@ Cleaning.o: Cleaning.cpp Cleaning.h
 	$(ECHO) "compilation de $<"
 	$(COMP) $(CPPFLAGS) -c -o $@ $<
 
-DataManager.o: dataManager.cpp dataManager.h
+DataManager.o: DataManager.cpp DataManager.h
 	$(ECHO) "compilation de $<"
 	$(COMP) $(CPPFLAGS) -c -o $@ $<
 

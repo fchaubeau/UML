@@ -8,7 +8,7 @@ using namespace std;
 #include "CompanyOwner.h"
 #include "Cleaning.h"
 #include "Measure.h"
-#include "dataManager.h"
+#include "DataManager.h"
 
 CompanyOwner::CompanyOwner(const CompanyOwner & companyOwner)
 {
