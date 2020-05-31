@@ -9,15 +9,15 @@ using namespace std;
 DataManager::DataManager()
 {
 	this->users = initUsers();
-	cout << "users ok" << endl;
+	//cout << "users ok" << endl;
 	this->sensors = initSensors();
-	cout << "sensors ok" << endl;
+	//cout << "sensors ok" << endl;
 	this->measures = initMeasures();
-	cout << "mesures ok" << endl;
+	//cout << "mesures ok" << endl;
 	this->companyOwners = initCompanyOwners();
-	cout << "compagny owner ok" << endl;
+	//cout << "compagny owner ok" << endl;
 	this->measureTypes = initMeasureTypes();
-	cout << "measures types ok" << endl;
+	//cout << "measures types ok" << endl;
  	//this->employees = initEmployees();
 	//cout << "employee ok" << endl;
 }

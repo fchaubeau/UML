@@ -9,19 +9,24 @@ using namespace std;
 int main(int argc, char* argv[])
 {
     Employee* emp = new Employee(string("f.chaubeau@gmail.com"), string("Chaubeau"), string("1234"), string("0123456789"), 0);
-    //cout << emp->toString() << endl;
+
     DataManager* dataManager = new DataManager();
-    cout << "after data manager init \n";
-    Measure* measure = new Measure(0,"1542","6756",0.24);
-    Measure measurebis = *measure;
-    cout << measurebis.getTime() << endl;
-    cout << measurebis.getAttributeId() << endl;
-    vector<double> meanAirQuality = emp->getMeanAirQuality(make_pair(45.0,0.0), 3.0, 1546344000, *dataManager);
-    cout << meanAirQuality.at(0) << endl;
+
+    vector<double> meanAirQuality = emp->getMeanAirQuality(make_pair(45.0,0.0), 4.0, 1580468400, *dataManager);
+    cout << "concentration of O3 = " << meanAirQuality.at(1) << endl;
+    cout << "concentration of SO2 = " << meanAirQuality.at(2) << endl;
+    cout << "concentration of NO2 = " << meanAirQuality.at(3) << endl;
+    cout << "concentration of PM10 = " << meanAirQuality.at(4) << endl;
+    cout << endl;
+
+    vector<double> meanAirQualityTimeSpawn = emp->getMeanAirQualityTimeSpawn(make_pair(45.0,0.0), 1.0, 1580209200, 1580468400, *dataManager);
+    cout << "concentration of O3 = " << meanAirQualityTimeSpawn.at(1) << endl;
+    cout << "concentration of SO2 = " << meanAirQualityTimeSpawn.at(2) << endl;
+    cout << "concentration of NO2 = " << meanAirQualityTimeSpawn.at(3) << endl;
+    cout << "concentration of PM10 = " << meanAirQualityTimeSpawn.at(4) << endl;
 
     delete emp;
     delete dataManager;
-    delete measure;
 
     return 0;
 }

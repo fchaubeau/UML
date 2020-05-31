@@ -54,24 +54,41 @@ Employee::~Employee() {}
 
 vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, const double & radius, const time_t & t, const DataManager & dataManager) const
 {
-    cout << "line0 Ok \n";
     vector<Measure> measures = dataManager.getMeasures();
-    cout << "line1 ok\n";
     vector<MeasureType> measuresType = dataManager.getMeasureTypes();
-    cout << "line2 ok\n";
     vector<string> measuresTypeId;
-    cout << "line3 ok\n";
     vector<double> dataSum;
-    cout << "line4 ok\n";
     vector<int> sizeOfData;
-    cout << "line5 ok\n";
+    //cout << "initialisations OK" << endl;
+
     for(unsigned int i = 0; i < measuresType.size(); i++)
     {
         measuresTypeId.push_back(measuresType[i].GetAttributeId());
         dataSum.push_back(0.0);
         sizeOfData.push_back(0);
     }
+
+    // Début test initialisation données
+    /*for(unsigned int i = 0; i < measuresType.size(); i++)
+    {
+        cout << "measureTypeById = " << measuresTypeId[i] << endl;
+        cout << "dataSum = " << dataSum[i] << endl;
+        cout << "sizeOfData = " << sizeOfData[i] << endl;
+        cout << endl;
+    }*/
+    // Fin test intialisations données
+    cout << endl;
+
     vector<string> sensorsId = getSensorIdInAnArea(center,radius, dataManager);
+    // Début test récupérations des détecteurs
+    /*for(unsigned int i = 0; i < sensorsId.size(); i++)
+    {
+        cout << "Id n°" << i << " = " << sensorsId[i] << endl;
+
+    }*/
+    // Fin test récupérations des détecteurs
+    
+
     for(unsigned int i = 0; i < measures.size(); i++)
     {
         for(unsigned int j = 0; j < sensorsId.size(); j++)
@@ -133,17 +150,25 @@ int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radi
 vector<double> Employee::getMeanAirQualityTimeSpawn(const pair<double, double> & center, const double & radius, const time_t & tdebut, const time_t & tFin, const DataManager & dataManager) const
 {
     time_t increment = tdebut;
-	struct tm* tm;
 	vector<vector<double>> timeSpanData;
 	vector<double> meanAirQuality;
 	while(difftime(tFin,increment)>0)
 	{
+        //cout << increment << endl;
 		meanAirQuality = getMeanAirQuality(center, radius, increment, dataManager);
 		timeSpanData.push_back(meanAirQuality);
-		tm = gmtime(&increment);
-		tm -> tm_mday++;
-		increment = mktime(tm);
+		increment += 86400;
 	}
+    // Début test récupération données
+    /*for(unsigned int i = 0; i < timeSpanData.size(); i++)
+    {
+        for(unsigned int j = 0; j < timeSpanData[i].size(); j++)
+        {
+            cout << "time span data [" << i <<"][" << j << "] = " << timeSpanData[i][j] << endl;
+        }
+
+    }*/
+    // Fin test récupération données
 	vector<double> meanAirQualityTimeSpan(meanAirQuality.size());
 	for(int i=0; i<timeSpanData.size(); i++)
 	{
