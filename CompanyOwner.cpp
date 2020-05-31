@@ -44,9 +44,9 @@ void CompanyOwner::addCleaning(const Cleaning & cleaning)
 	
 list<int> CompanyOwner::getEvolution(const time_t & tdebut, const time_t & tfin, const string & sensorId) const
 {
-	DataManager dataManager = new DataManager();
-	vector<Measure> measures = dataManager.getMeasures();
-	return *new list<int>();
+	DataManager* dataManager = new DataManager();
+	vector<Measure> measures = dataManager->getMeasures();
+	return list<int>();
 }
 	
 void CompanyOwner::signUp(const CompanyOwner & companyOwner)

@@ -10,6 +10,12 @@ using namespace std;
 
 DataManager::DataManager()
 {
+	this->users = getUsers();
+	this->sensors = getSensors();
+	this->measureTypes = getMeasureTypes();
+	this->measures = getMeasures();
+	this->companyOwners = getCompanyOwners();
+	this->employees = getEmployees();
 }
 
 
