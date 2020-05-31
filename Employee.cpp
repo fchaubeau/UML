@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdlib>
 #include <cmath>
+#include <ctime>
 
 using namespace std;
 
@@ -95,6 +96,7 @@ vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, 
     return dataSum;
 }
 
+
 int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radiusAnalyse, const double & rateAmeliorationP1, const double & rateAmeliorationP2, const DataManager & dataManager){        //Exemple P1=0.3 et P2=0.5
 	int longitude = cleaning.getLongitude();
 	int latitude = cleaning.getLatitude();
@@ -128,10 +130,33 @@ int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radi
 	
 }
 
-double Employee::getMeanAirQualityTimeSpawn(const pair<double, double> & center, const double & radius, const time_t & tdebut, const time_t & tFin) const
+vector<double> Employee::getMeanAirQualityTimeSpawn(const pair<double, double> & center, const double & radius, const time_t & tdebut, const time_t & tFin, const DataManager & dataManager) const
 {
-    
-    return 0.0;
+    time_t increment = tdebut;
+	struct tm* tm;
+	vector<vector<double>> timeSpanData;
+	vector<double> meanAirQuality;
+	while(difftime(tFin,increment)>0)
+	{
+		meanAirQuality = getMeanAirQuality(center, radius, increment, dataManager);
+		timeSpanData.push_back(meanAirQuality);
+		tm = gmtime(&increment);
+		tm -> tm_mday++;
+		increment = mktime(tm);
+	}
+	vector<double> meanAirQualityTimeSpan(meanAirQuality.size());
+	for(int i=0; i<timeSpanData.size(); i++)
+	{
+		for(int j=0; j<timeSpanData[i].size(); j++)
+		{
+			meanAirQualityTimeSpan[j] += timeSpanData[i][j];
+		}
+	}
+	for(int i=0; i < meanAirQualityTimeSpan.size(); i++)
+	{
+		meanAirQualityTimeSpan[i] /= timeSpanData.size();
+	}
+    return meanAirQualityTimeSpan;
 }
 
 list<Sensor> Employee::getSimilarSensor(const Sensor & s) const
