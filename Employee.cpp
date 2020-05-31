@@ -14,9 +14,8 @@ using namespace std;
 
 static vector<string> getSensorIdInAnArea(const pair<double,double> & center, const double & radius, DataManager & dataManager) //Center = <latitude,longitude>
 {
-    DataManager* dataManager = new DataManager();
     vector<string> toReturn;
-    vector<Sensor> sensors = dataManager->getSensors();
+    vector<Sensor> sensors = dataManager.getSensors();
     for(unsigned int i = 0; i < sensors.size(); i++)
     {
         if(sqrt(pow(abs(center.first-sensors[i].GetLatitude()),2) + pow(abs(center.second-sensors[i].GetLongitude()),2)) < radius)
@@ -46,8 +45,8 @@ Employee::~Employee() {}
 
 vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, const double & radius, const time_t & t, const DataManager & dataManager) const
 {
-    vector<Measure> measures = dataManager->getMeasures();
-    vector<MeasureType> measuresType = dataManager->getMeasureTypes();
+    vector<Measure> measures = dataManager.getMeasures();
+    vector<MeasureType> measuresType = dataManager.getMeasureTypes();
     vector<string> measuresTypeId;
     vector<double> dataSum;
     vector<int> sizeOfData;
@@ -82,7 +81,7 @@ vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, 
     return dataSum;
 }
 
-int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radiusAnalyse, const double & rateAmeliorationP1, const double & rateAmeliorationP2){        //Exemple P1=0.3 et P2=0.5
+int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radiusAnalyse, const double & rateAmeliorationP1, const double & rateAmeliorationP2, const DataManager dataManager){        //Exemple P1=0.3 et P2=0.5
 	int longitude = cleaning.getLongitude();
 	int latitude = cleaning.getLatitude();
 	time_t startTime = cleaning.getStartTime();
@@ -90,13 +89,13 @@ int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radi
 	
   	pair<double,double> coordinate = make_pair(latitude,longitude);
 
-	vector<double>startQuality = getMeanAirQuality(coordinate, radiusAnalyse, startTime);   //Change to call the fonction getMeanAirQualityTimeSpawn(...) as you like
+	vector<double>startQuality = getMeanAirQuality(coordinate, radiusAnalyse, startTime, dataManager);   //Change to call the fonction getMeanAirQualityTimeSpawn(...) as you like
 	
-	vector<double>stopQuality = getMeanAirQuality(coordinate, radiusAnalyse, stopTime);   //Change to call the fonction getMeanAirQualityTimeSpawn(...) as you like
+	vector<double>stopQuality = getMeanAirQuality(coordinate, radiusAnalyse, stopTime, dataManager);   //Change to call the fonction getMeanAirQualityTimeSpawn(...) as you like
 	
 	int rate = 0;
 	
-	for(int i = 0,i<startQuality.size();i++){
+	for(int i = 0 ; i<startQuality.size() ; i++){
 		if(stopQuality[i]<=(1-rateAmeliorationP2)*startQuality[i]){
 			cout<<"Attribute No."<<i<<": A strong amelioration detected."<<endl;
 			rate+=2;
