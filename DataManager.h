@@ -19,14 +19,14 @@ public:
 	DataManager();
 	~DataManager();
 
-	//vector<User> getUsers();
+	vector<User> getUsers() const { return users; };
 	vector<Sensor> getSensors() const { return sensors; };
 	vector<MeasureType> getMeasureTypes() const { return measureTypes; };
 	vector<Measure> getMeasures() const { return measures; };
 	vector<CompanyOwner> getCompanyOwners() const { return companyOwners; };
 	vector<Employee> getEmployees() const { return employees; };
 
-	//vector<User> getUsers();
+	vector<User> initUsers();
 	vector<Sensor> initSensors();
 	vector<MeasureType> initMeasureTypes();
 	vector<Measure> initMeasures();
@@ -34,7 +34,7 @@ public:
 	vector<Employee> initEmployees();
 
 private:
-	//vector<User> users;
+	vector<User> users;
 	vector<Sensor> sensors;
 	vector<MeasureType> measureTypes;
 	vector<Measure> measures;

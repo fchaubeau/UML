@@ -8,12 +8,18 @@ using namespace std;
 
 DataManager::DataManager()
 {
-	//this->users = getUsers();
+	this->users = initUsers();
+	cout << "users ok" << endl;
 	this->sensors = initSensors();
-	this->measureTypes = initMeasureTypes();
+	cout << "sensors ok" << endl;
 	this->measures = initMeasures();
+	cout << "mesures ok" << endl;
 	this->companyOwners = initCompanyOwners();
-	this->employees = initEmployees();
+	cout << "compagny owner ok" << endl;
+	this->measureTypes = initMeasureTypes();
+	cout << "measures types ok" << endl;
+ 	//this->employees = initEmployees();
+	//cout << "employee ok" << endl;
 }
 
 
@@ -21,33 +27,33 @@ DataManager::~DataManager()
 {
 }
 
-//vector<User> DataManager::getUsers() {
-//	vector<User> users;
-//	ifstream file("users.csv");
-//	while (!file.eof())
-//	{
-//		string line;
-//		vector<string> attributs;
-//
-//		getline(file, line);
-//		if (file.eof())
-//			break;
-//
-//		size_t current, previous = 0;
-//		current = line.find(';');
-//		while (current < line.size()) {
-//			attributs.push_back(line.substr(previous, current - previous));
-//			previous = current + 1;
-//			current = line.find(';', previous);
-//		}
-//		attributs.push_back(line.substr(previous, current - previous));
-//
-//		User toAdd(attributs[0], attributs[1], attributs[2], attributs[3]);
-//		users.push_back(toAdd);
-//	}
-//	file.close();
-//	return users;
-//}
+vector<User> DataManager::initUsers() {
+	vector<User> users;
+	ifstream file("users.csv");
+	while (!file.eof())
+	{
+		string line;
+		vector<string> attributs;
+
+		getline(file, line);
+		if (file.eof())
+			break;
+
+		size_t current, previous = 0;
+		current = line.find(';');
+		while (current < line.size()) {
+			attributs.push_back(line.substr(previous, current - previous));
+			previous = current + 1;
+			current = line.find(';', previous);
+		}
+		attributs.push_back(line.substr(previous, current - previous));
+
+		User toAdd(attributs[0], attributs[1], attributs[2], attributs[3]);
+		users.push_back(toAdd);
+	}
+	file.close();
+	return users;
+}
 
 vector<Sensor> DataManager::initSensors() {
 	vector<Sensor> sensors;
@@ -80,7 +86,7 @@ vector<Sensor> DataManager::initSensors() {
 vector<MeasureType> DataManager::initMeasureTypes()
 {
 	vector<MeasureType> measureTypes;
-	ifstream file("measureTypes.csv");
+	ifstream file("attributes.csv");
 	while (!file.eof())
 	{
 		string line;
@@ -150,7 +156,7 @@ vector<Measure> DataManager::initMeasures()
 vector<CompanyOwner> DataManager::initCompanyOwners()
 {
 	vector<CompanyOwner> companyOwners;
-	ifstream file("companyOwners.csv");
+	ifstream file("providers.csv");
 	while (!file.eof())
 	{
 		string line;
@@ -179,7 +185,7 @@ vector<CompanyOwner> DataManager::initCompanyOwners()
 vector<Employee> DataManager::initEmployees()
 {
 	vector<Employee> employees;
-	ifstream file("employees.csv");
+	ifstream file("xxxxxxx.csv");
 	while (!file.eof())
 	{
 		string line;
