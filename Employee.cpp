@@ -98,7 +98,7 @@ int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radi
 		if(stopQuality[i]<=(1-rateAmeliorationP2)*startQuality[i]){
 			cout<<"Attribute No."<<i<<": A strong amelioration detected."<<endl;
 			rate+=2;
-		}else (ifstopQuality[i]<=(1-rateAmeliorationP1)*startQuality[i]){
+		}else if(stopQuality[i]<=(1-rateAmeliorationP1)*startQuality[i]){
 			cout<<"Attribute No."<<i<<": A weak amelioration detected."<<endl;
 			rate++;		
 		}else{
