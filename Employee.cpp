@@ -11,12 +11,8 @@ using namespace std;
 #include "Measure.h"
 #include "Sensor.h"
 
-<<<<<<< HEAD
 
 static vector<string> getSensorIdInAnArea(const pair<double,double> & center, const double & radius, DataManager & dataManager) //Center = <latitude,longitude>
-=======
-static vector<string> getSensorIdInAnArea(const pair<double,double> & center, const double & radius) //Center = <latitude,longitude>
->>>>>>> 023e9f8f93b4384ebe322b5d5c968458086be270
 {
     DataManager* dataManager = new DataManager();
     vector<string> toReturn;
