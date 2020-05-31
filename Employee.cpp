@@ -5,7 +5,7 @@
 
 using namespace std;
 
-#include "dataManager.h"
+#include "DataManager.h"
 #include "Employee.h"
 #include "Measure.h"
 #include "Sensor.h"
