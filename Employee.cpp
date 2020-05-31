@@ -50,31 +50,34 @@ vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, 
     vector<string> measuresTypeId;
     vector<double> dataSum;
     vector<int> sizeOfData;
-    for(int i = 0; i < measuresType.size(); i++)
+    for(unsigned int i = 0; i < measuresType.size(); i++)
     {
         measuresTypeId.push_back(measuresType[i].GetAttributeId());
         dataSum.push_back(0.0);
         sizeOfData.push_back(0);
     }
     vector<string> sensorsId = getSensorIdInAnArea(center,radius);
-    for(int i = 0; i < measures.size(); i++)
+    for(unsigned int i = 0; i < measures.size(); i++)
     {
-        for(int j = 0; j < sensorsId.size(); j++)
+        for(unsigned int j = 0; j < sensorsId.size(); j++)
         {
             if(measures[i].getSensorId() == sensorsId[j] && measures[i].getTime() == t)
             {
-                for(int k = 0; k < measuresTypeId.size(); k++)
+                for(unsigned int k = 0; k < measuresTypeId.size(); k++)
                 {
                     if(measures[i].getAttributeId() == measuresTypeId[k])
                     {
+
                         //toReturn[k] += measures[i];
+
+                        dataSum[k] += measures[i].getValue();
                         sizeOfData[k]++;
                     }
                 }
             }
         }
     }
-    for(int i = 0; i < dataSum.size(); i++)
+    for(unsigned int i = 0; i < dataSum.size(); i++)
     {
         dataSum[i] = dataSum[i]/sizeOfData[i];
     }
