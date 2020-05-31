@@ -12,6 +12,7 @@
 
 using namespace std;
 
+class Employee;
 class DataManager
 {
 public:
@@ -19,11 +20,11 @@ public:
 	~DataManager();
 
 	//vector<User> getUsers();
-	vector<Sensor> getSensors() { return sensors; };
-	vector<MeasureType> getMeasureTypes() { return measureTypes; };
-	vector<Measure> getMeasures() { return measures; };
-	vector<CompanyOwner> getCompanyOwners() { return companyOwners; };
-	vector<Employee> getEmployees() { return employees; };
+	vector<Sensor> getSensors() const { return sensors; };
+	vector<MeasureType> getMeasureTypes() const { return measureTypes; };
+	vector<Measure> getMeasures() const { return measures; };
+	vector<CompanyOwner> getCompanyOwners() const { return companyOwners; };
+	vector<Employee> getEmployees() const { return employees; };
 
 	//vector<User> getUsers();
 	vector<Sensor> initSensors();

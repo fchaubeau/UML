@@ -11,7 +11,7 @@ using namespace std;
 #include "Sensor.h"
 
 
-static vector<string> getSensorIdInAnArea(const pair<double,double> & center, const double & radius, DataManager & dataManager) //Center = <latitude,longitude>
+static vector<string> getSensorIdInAnArea(const pair<double,double> & center, const double & radius, const DataManager & dataManager) //Center = <latitude,longitude>
 {
     vector<string> toReturn;
     vector<Sensor> sensors = dataManager.getSensors();
@@ -55,7 +55,7 @@ vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, 
         dataSum.push_back(0.0);
         sizeOfData.push_back(0);
     }
-    vector<string> sensorsId = getSensorIdInAnArea(center,radius);
+    vector<string> sensorsId = getSensorIdInAnArea(center,radius, dataManager);
     for(unsigned int i = 0; i < measures.size(); i++)
     {
         for(unsigned int j = 0; j < sensorsId.size(); j++)
@@ -80,7 +80,7 @@ vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, 
     return dataSum;
 }
 
-int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radiusAnalyse, const double & rateAmeliorationP1, const double & rateAmeliorationP2, const & DataManager dataManager){        //Exemple P1=0.3 et P2=0.5
+int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radiusAnalyse, const double & rateAmeliorationP1, const double & rateAmeliorationP2, const DataManager & dataManager){        //Exemple P1=0.3 et P2=0.5
 	int longitude = cleaning.getLongitude();
 	int latitude = cleaning.getLatitude();
 	time_t startTime = cleaning.getStartTime();
