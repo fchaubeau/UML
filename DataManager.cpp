@@ -256,6 +256,7 @@ vector<Cleaning> DataManager::initCleanings()
 		time_t endTime = mktime(&time);
 
 		Cleaning toAdd(attributs[0], stod(attributs[1]), stod(attributs[2]), attributs[3], startTime, endTime);
+		cleanings.push_back(toAdd);
 	}
 	file.close();
 	return cleanings;
