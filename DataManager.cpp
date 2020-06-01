@@ -210,3 +210,54 @@ vector<Employee> DataManager::initEmployees()
 	file.close();
 	return employees;
 }
+
+vector<Cleaning> DataManager::initCleanings()
+{
+	vector<Cleaning> cleanings;
+	ifstream file("cleaners.csv");
+	while (!file.eof())
+	{
+		string line;
+		vector<string> attributs;
+
+		getline(file, line);
+		if (file.eof())
+			break;
+
+		size_t current, previous = 0;
+		current = line.find(';');
+		while (current < line.size()) {
+			attributs.push_back(line.substr(previous, current - previous));
+			previous = current + 1;
+			current = line.find(';', previous);
+		}
+		attributs.push_back(line.substr(previous, current - previous));
+
+		struct tm time;
+		int yy, month, dd, hh, mm, ss;
+		sscanf(attributs[4].c_str(), "%d-%d-%d %d:%d:%d", &yy, &month, &dd, &hh, &mm, &ss);
+		time.tm_year = yy - 1900;
+		time.tm_mon = month;
+		time.tm_mday = dd;
+		time.tm_hour = hh;
+		time.tm_min = mm;
+		time.tm_sec = ss;
+		time.tm_isdst = 0;
+		time_t startTime = mktime(&time);
+
+		sscanf(attributs[5].c_str(), "%d-%d-%d %d:%d:%d", &yy, &month, &dd, &hh, &mm, &ss);
+		time.tm_year = yy - 1900;
+		time.tm_mon = month;
+		time.tm_mday = dd;
+		time.tm_hour = hh;
+		time.tm_min = mm;
+		time.tm_sec = ss;
+		time.tm_isdst = 0;
+		time_t endTime = mktime(&time);
+
+		Cleaning toAdd(attributs[0], stod(attributs[1]), stod(attributs[2]), attributs[3], startTime, endTime);
+	}
+	file.close();
+	return cleanings;
+	
+}
