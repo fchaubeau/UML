@@ -28,10 +28,10 @@ int main(int argc, char* argv[])
     // cout << "concentration of NO2 = " << meanAirQualityTimeSpawn.at(3) << endl;
     // cout << "concentration of PM10 = " << meanAirQualityTimeSpawn.at(4) << endl;
 	
-	cout << "---------- AIRWATCHER ----------" << endl;
-	cout << "Disclaimer : this app is under construction. Currently, there are 2 working functionalities" << endl;
+	cout << "------------------------------ A I R W A T C H E R ------------------------------" << endl;
+	cout << "Disclaimer : this app is under construction. Currently, there are 2 working functionalities" << endl << endl;
 	cout << "1 : Fetch mean air quality over given area." << endl;
-	cout << "2 : Determine if a given AirCleaner is effective." << endl;
+	cout << "2 : Determine if a given AirCleaner is effective." << endl << endl;
 	cout << "Please enter the number of the functionality you wish to use : ";
 	int choice;
 	cin >> choice;
@@ -48,12 +48,13 @@ int main(int argc, char* argv[])
 				cout << "Enter the radius of the area : ";
 				double areaRadius;
 				cin >> areaRadius;
-				cout << "1 : Get instant mean air quality" << endl << "2 : Get mean air quality over a period" << endl;
+				cout << "1 : Get instant mean air quality" << endl << "2 : Get mean air quality over a period" << endl << "Please select your option : ";
 				cin >> choice;
 				string day, month, year;
 				switch(choice){
 					case 1: 
 					{		
+							// cout << areaCenter.first << " | " << areaCenter.second << " | " << areaRadius << endl;   //Affichage test
 							cout << "Enter date of measure following the dd-mm-yyyy format : ";
 							getline(cin, day, '-');
 							getline(cin, month, '-');
@@ -97,7 +98,7 @@ int main(int argc, char* argv[])
 		default: cout << "Please enter the number of an operational functionality : ";
 				break;
 	}	
-
+	cout << "end of program" << endl;   //Affichage test
     delete emp;
     delete dataManager;
 
@@ -119,9 +120,8 @@ time_t dateParser(const string& dayS, const string& monthS, const string& yearS)
 	parsedDate->tm_sec = 0;
 	time_t date = mktime(parsedDate);
 	char* testDate;
-	//Affichage test
-	strftime(testDate,20,"%F %T",parsedDate);
-	cout << testDate << endl;
-	cout << date << endl;
+	// strftime(testDate,20,"%F %T",parsedDate);   //Affichage test
+	// cout << testDate << endl;
+	// cout << date << endl;
 	return date;
 }
