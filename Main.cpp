@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
     // cout << "concentration of PM10 = " << meanAirQualityTimeSpawn.at(4) << endl;
 	
 	cout << "------------------------------ A I R W A T C H E R ------------------------------" << endl;
-	cout << "Disclaimer : this app is under construction. Currently, there are 2 working functionalities" << endl << endl;
+	cout << "Disclaimer : this app is under construction. Currently, there are 2 working functionalities." << endl << endl;
 	cout << "1 : Fetch mean air quality over given area." << endl;
 	cout << "2 : Determine if a given AirCleaner is effective." << endl << endl;
 	cout << "Please enter the number of the functionality you wish to use : ";
@@ -98,7 +98,7 @@ int main(int argc, char* argv[])
 		default: cout << "Please enter the number of an operational functionality : ";
 				break;
 	}	
-	cout << "end of program" << endl;   //Affichage test
+	cout << "End of program." << endl;   //Affichage test
     delete emp;
     delete dataManager;
 
@@ -120,8 +120,13 @@ time_t dateParser(const string& dayS, const string& monthS, const string& yearS)
 	parsedDate->tm_sec = 0;
 	time_t date = mktime(parsedDate);
 	char* testDate;
-	// strftime(testDate,20,"%F %T",parsedDate);   //Affichage test
-	// cout << testDate << endl;
-	// cout << date << endl;
+	
+	strftime(testDate,20,"%F %T",parsedDate);   //Affichage test
+	cout << testDate << endl;
+	cout << date << endl;
+	
+	time_t test = 1580468400;  //Affichage test
+	cout << ctime(&test);
+	
 	return date;
 }
