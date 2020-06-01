@@ -129,23 +129,61 @@ int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radi
 	int rate = 0;
 	
 	for(int i = 0 ; i<startQuality.size() ; i++){
-		if(stopQuality[i]<=(1-rateAmeliorationP2)*startQuality[i]){
+		if(stopQuality[i]>=(1+rateAmeliorationP2)*startQuality[i]){
 			cout<<"Attribute No."<<i<<": A strong amelioration detected."<<endl;
 			rate+=2;
-		}else if(stopQuality[i]<=(1-rateAmeliorationP1)*startQuality[i]){
+		}else if(stopQuality[i]>=(1+rateAmeliorationP1)*startQuality[i]){
 			cout<<"Attribute No."<<i<<": A weak amelioration detected."<<endl;
 			rate++;		
 		}else{
 			cout<<"Attribute No."<<i<<":The amelioration is negligible or no amelioration at all"<<endl;
 		}
 	
-			cout<<"Value before the cleaning"<<startQuality[i]<<endl;
-			cout<<"Value after the cleaning"<<stopQuality[i]<<endl;
+			cout<<"Value before the cleaning: "<<startQuality[i]<<endl;
+			cout<<"Value after the cleaning: "<<stopQuality[i]<<endl;
 	}
 	return rate;
 	
 	
 }
+
+void Employee::analyseImpactEvolutionDeTemps(const Cleaning & cleaning, const double & radiusAnalyse, const double & rateAmeliorationP1, const double & rateAmeliorationP2, const DataManager & dataManager){
+	int longitude = cleaning.getLongitude();
+	int latitude = cleaning.getLatitude();
+	time_t startTime = cleaning.getStartTime();
+	time_t stopTime = cleaning.getStopTime();
+	int i=0;
+  	pair<double,double> coordinate = make_pair(latitude,longitude);
+
+	 //Change to call the fonction getMeanAirQualityTimeSpawn(...) as you like
+	for(;startTime<stopTime;startTime+=864000){ //10 days
+		int rate = 0;
+		vector<double>startQuality = getMeanAirQuality(coordinate, radiusAnalyse, startTime, dataManager);   //Change to call the fonction getMeanAirQualityTimeSpawn(...) as you like
+	
+		vector<double>stopQuality = getMeanAirQuality(coordinate, radiusAnalyse, startTime+=864000, dataManager);  
+		for(int j = 0 ; j<startQuality.size() ; j++){
+			if(stopQuality[j]>=(1+rateAmeliorationP2)*startQuality[j]){
+				cout<<"Attribute No."<<j<<": A strong amelioration detected."<<endl;
+				rate+=2;
+			}else if(stopQuality[j]>=(1-rateAmeliorationP1)*startQuality[j]){
+				cout<<"Attribute No."<<j<<": A weak amelioration detected."<<endl;
+				rate++;		
+			}else{
+				cout<<"Attribute No."<<j<<":The amelioration is negligible or no amelioration at all"<<endl;
+			}
+	
+			cout<<"Value before the cleaning: "<<startQuality[j]<<endl;
+			cout<<"Value after the cleaning: "<<stopQuality[j]<<endl;
+			
+			
+		}
+		i++;
+		cout<<"The rate for the amelioration of the No."<<i<<" ten days: "<<rate<<endl<<endl<<endl;
+	}
+
+
+}
+
 
 vector<double> Employee::getMeanAirQualityTimeSpawn(const pair<double, double> & center, const double & radius, const time_t & tdebut, const time_t & tFin, const DataManager & dataManager) const
 {

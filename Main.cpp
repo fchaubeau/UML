@@ -5,7 +5,8 @@
 #include "Employee.h"
 #include "Measure.h"
 using namespace std;
-
+void testFonctionality2Zone();
+void testFonctionalityEvaluation();
 time_t dateParser(const string& dayS, const string& monthS, const string& yearS);
 
 int main(int argc, char* argv[])
@@ -101,9 +102,45 @@ int main(int argc, char* argv[])
 	cout << "End of program." << endl;   //Affichage test
     delete emp;
     delete dataManager;
-
+    
+	
+    //testFonctionality2Zone();
+    //testFonctionalityEvaluation();
     return 0;
 }
+
+void testFonctionality2Zone(){
+	Employee* emp = new Employee(string("f.chaubeau@gmail.com"), string("Chaubeau"), string("1234"), string("0123456789"), 0);
+	DataManager* dataManager = new DataManager();
+	vector<Cleaning> cleaners = dataManager->initCleanings();
+	
+	for(int i=0;i<cleaners.size();i++){
+		cout<<"Analysing "<<cleaners[i].getCleanerId()<<"for the sensors in the range : radius = 1.0"<<endl<<endl;		
+		int rate = emp->analyseImpactNiveau(cleaners[i],1.0,0.05,0.1,*dataManager);
+		cout<<"The rate for "<<cleaners[i].getCleanerId()<<" vaut "<<rate<<" (rating from 0 to 8)"<<endl<<endl<<endl;
+	}
+
+	for(int i=0;i<cleaners.size();i++){
+		cout<<"Analysing "<<cleaners[i].getCleanerId()<<"for the sensors in the range : radius = 4.0"<<endl<<endl;		
+		int rate = emp->analyseImpactNiveau(cleaners[i],4.0,0.05,0.1,*dataManager);
+		cout<<"The rate for "<<cleaners[i].getCleanerId()<<" vaut "<<rate<<" (rating from 0 to 8)"<<endl<<endl<<endl;
+	}
+
+}
+
+
+void testFonctionalityEvaluation(){
+	Employee* emp = new Employee(string("f.chaubeau@gmail.com"), string("Chaubeau"), string("1234"), string("0123456789"), 0);
+	DataManager* dataManager = new DataManager();
+	vector<Cleaning> cleaners = dataManager->initCleanings();
+	cout<<"Start to analysing the impact of the cleaners by the evolution of the time"<<endl<<endl;
+	for(int i=0;i<cleaners.size();i++){
+		cout<<"Cleaner No."<<i<<": "<<endl;
+		emp->analyseImpactEvolutionDeTemps(cleaners[i],1.0,0.02,0.05,*dataManager);
+	}
+
+}
+
 
 time_t dateParser(const string& dayS, const string& monthS, const string& yearS)
 {
