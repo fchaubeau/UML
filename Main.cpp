@@ -143,13 +143,13 @@ void testFonctionality2Zone(Employee* emp, DataManager* dataManager)
 	vector<Cleaning> cleaners = dataManager->initCleanings();
 	
 	for(int i=0;i<cleaners.size();i++){
-		cout<<"Analysing "<<cleaners[i].getCleanerId()<<"for the sensors in the range : radius = 1.0"<<endl<<endl;		
+		cout<<"Analysing "<<cleaners[i].getCleanerId()<<" for the sensors in the range : radius = 1.0"<<endl<<endl;		
 		int rate = emp->analyseImpactNiveau(cleaners[i],1.0,0.05,0.1,*dataManager);
 		cout<<"The rate for "<<cleaners[i].getCleanerId()<<" is "<<rate<<" (rating from 0 to 8)"<<endl<<endl<<endl;
 	}
 
 	for(int i=0;i<cleaners.size();i++){
-		cout<<"Analysing "<<cleaners[i].getCleanerId()<<"for the sensors in the range : radius = 4.0"<<endl<<endl;		
+		cout<<"Analysing "<<cleaners[i].getCleanerId()<<" for the sensors in the range : radius = 4.0"<<endl<<endl;		
 		int rate = emp->analyseImpactNiveau(cleaners[i],4.0,0.05,0.1,*dataManager);
 		cout<<"The rate for "<<cleaners[i].getCleanerId()<<" is "<<rate<<" (rating from 0 to 8)"<<endl<<endl<<endl;
 	}
