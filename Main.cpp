@@ -8,6 +8,7 @@ using namespace std;
 void testFonctionality2Zone(Employee* emp, DataManager* dataManager);
 void testFonctionalityEvaluation(Employee* emp, DataManager* dataManager);
 time_t dateParser(const string& dayS, const string& monthS, const string& yearS);
+bool authentification(const string& email, const string& password, DataManager* dataManager);
 
 int main(int argc, char* argv[])
 {
@@ -22,7 +23,17 @@ int main(int argc, char* argv[])
 		// cout << testMeasures[i].toString() << endl;
 		// cout << endl;
 	// }
-	
+	bool verified = false;
+	cout<< "authentification, employee only"<<endl;
+	string email;
+	string pw;
+	while(!verified){
+		cout << "your email please: " << endl;
+		cin >> email;
+		cout << "and your password please:" << endl;
+		cin >> pw;
+		verified = authentification(email, pw, dataManager);
+	}
 	cout << "------------------------------ A I R W A T C H E R ------------------------------" << endl;
 	cout << "Disclaimer : this app is under construction. Currently, there are 2 working functionalities." << endl << endl;
 	cout << "1 : Fetch mean air quality over given area." << endl;
@@ -192,4 +203,19 @@ time_t dateParser(const string& dayS, const string& monthS, const string& yearS)
 	
 	delete parsedDate;
 	return date;
+}
+bool authentification(const string& email, const string& password, DataManager* dataManager)
+{
+	bool verified = false;
+	cout<< "checking employees" << endl;
+	vector<Employee> employees = dataManager->initEmployees();
+	
+	for(int i=0; i<employees.size(); i++){
+		if(employees[i].LogIn(email, password)){
+			cout<<employees[i].getName()<<", welcome." << endl;
+			verified = true;
+			return verified;
+		}
+	}
+	return verified;
 }

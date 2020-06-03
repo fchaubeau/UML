@@ -35,18 +35,18 @@ User::~User() {}
 
 bool User::LogIn(const string & mail, const string & password)
 {
-	vector<string> tokenizedLine; //TODO
+	//vector<string> tokenizedLine; //TODO
 	bool userFound = false;
-	for (unsigned int i = 0; i < tokenizedLine.size(); i++)
-	{
-		if (tokenizedLine[0].compare(mail) && tokenizedLine[1].compare(password))
-		{
-			userFound = true;
-			this->mail = mail;
-			this->password = password;
-		}
-	}
-
+	//for (unsigned int i = 0; i < tokenizedLine.size(); i++)
+	//{
+		//if (tokenizedLine[0].compare(mail) && tokenizedLine[1].compare(password))
+		//{
+			//userFound = true;
+			//this->mail = mail;
+			//this->password = password;
+		//}
+	//}
+	if(this->mail==mail && this->password==password) userFound = true;
 	return userFound;
 }
 
