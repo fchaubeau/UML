@@ -147,6 +147,26 @@ int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radi
 	
 }
 
+double Employee::calculRayonEffet(const Cleaning & cleaning, const double & rateAmeliorationP1, const double & rateAmeliorationP2, const DataManager & dataManager)
+{
+    double rayon = 0.0;
+    bool effect = true;
+    while(effect)
+    {
+        if(analyseImpactNiveau(cleaning, rayon, rateAmeliorationP1, rateAmeliorationP2, dataManager) > 0)
+        {
+            rayon += 0.1;
+        }
+        else
+        {
+            effect = false;
+        }
+
+    }
+
+    return rayon
+}
+
 void Employee::analyseImpactEvolutionDeTemps(const Cleaning & cleaning, const double & radiusAnalyse, const double & rateAmeliorationP1, const double & rateAmeliorationP2, const DataManager & dataManager){
 	int longitude = cleaning.getLongitude();
 	int latitude = cleaning.getLatitude();
