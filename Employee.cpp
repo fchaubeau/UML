@@ -130,10 +130,10 @@ int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radi
 	int rate = 0;
 	
 	for(int i = 1 ; i<startQuality.size() ; i++){
-		if(stopQuality[i]>=(1+rateAmeliorationP2)*startQuality[i]){
+		if(stopQuality[i]<=(1-rateAmeliorationP2)*startQuality[i]){
 			cout<<"Attribute No."<<i<<": A strong amelioration detected."<<endl;
 			rate+=2;
-		}else if(stopQuality[i]>=(1+rateAmeliorationP1)*startQuality[i]){
+		}else if(stopQuality[i]<=(1-rateAmeliorationP1)*startQuality[i]){
 			cout<<"Attribute No."<<i<<": A weak amelioration detected."<<endl;
 			rate++;		
 		}else{
@@ -150,7 +150,7 @@ int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radi
 
 double Employee::calculRayonEffet(const Cleaning & cleaning, const double & rateAmeliorationP1, const double & rateAmeliorationP2, const DataManager & dataManager)
 {
-	double rayon = 0.0;
+	double rayon = 1.0;
 	bool effect = true;
 	int grade = 0;
 	while (effect)
