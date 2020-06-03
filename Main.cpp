@@ -5,8 +5,8 @@
 #include "Employee.h"
 #include "Measure.h"
 using namespace std;
-void testFonctionality2Zone();
-void testFonctionalityEvaluation();
+void testFonctionality2Zone(Employee* emp, DataManager* dataManager);
+void testFonctionalityEvaluation(Employee* emp, DataManager* dataManager);
 time_t dateParser(const string& dayS, const string& monthS, const string& yearS);
 
 int main(int argc, char* argv[])
@@ -37,6 +37,7 @@ int main(int argc, char* argv[])
 		cout << "Please enter the number of an operational functionality : ";
 		cin >> choice1;
 	}
+	cout << endl;
 	switch(choice1){
 		case 1: 
 		{
@@ -104,14 +105,29 @@ int main(int argc, char* argv[])
 				break;
 		}
 
-		case 2: cout << "1 : Evaluate current AirCleaner efficacy" << endl << "2 : Evaluate AirCleaner efficacy over time" << endl << endl << "Please select your option : ";
+		case 2: 
+		{
+				cout << "1 : Evaluate current AirCleaner efficacy" << endl << "2 : Evaluate AirCleaner efficacy over time" << endl << endl << "Please select your option : ";
 				cin >> choice3;
 				while(choice3 != 1 && choice3 != 2)
 				{
 					cout << "Please enter the number of an operational functionality : ";
 					cin >> choice3;
 				}
-				// switch(
+				switch(choice3)
+				{
+						case 1:
+						{
+							testFonctionality2Zone(emp, dataManager);
+							break;
+						}
+						case 2:
+						{
+							testFonctionalityEvaluation(emp, dataManager);
+							break;
+						}
+				}
+		}
 	}	
 	
     delete emp;
@@ -122,7 +138,8 @@ int main(int argc, char* argv[])
 }
 
 
-void testFonctionality2Zone(Employee* emp, DataManager* dataManager){
+void testFonctionality2Zone(Employee* emp, DataManager* dataManager)
+{
 	vector<Cleaning> cleaners = dataManager->initCleanings();
 	
 	for(int i=0;i<cleaners.size();i++){
@@ -140,7 +157,8 @@ void testFonctionality2Zone(Employee* emp, DataManager* dataManager){
 }
 
 
-void testFonctionalityEvaluation(Employee* emp, DataManager* dataManager){
+void testFonctionalityEvaluation(Employee* emp, DataManager* dataManager)
+{
 	vector<Cleaning> cleaners = dataManager->initCleanings();
 	cout<<"Start to analysing the impact of the cleaners by the evolution of the time"<<endl<<endl;
 	for(int i=0;i<cleaners.size();i++){
