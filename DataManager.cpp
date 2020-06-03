@@ -137,13 +137,13 @@ vector<Measure> DataManager::initMeasures()
 		int yy, month, dd, hh, mm, ss;
 		sscanf(attributs[0].c_str(), "%d-%d-%d %d:%d:%d", &yy, &month, &dd, &hh, &mm, &ss);
 		time.tm_year = yy - 1900;
-		time.tm_mon = month;
+		time.tm_mon = month - 1;
 		time.tm_mday = dd;
 		time.tm_hour = hh;
 		time.tm_min = mm;
 		time.tm_sec = ss;
 		time.tm_isdst = 0;
-		time_t timeOfMeasurement = mktime(&time);
+		time_t timeOfMeasurement = timegm(&time);
 
 		
 		Measure toAdd(timeOfMeasurement, attributs[1], attributs[2], stod(attributs[3]));
