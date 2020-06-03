@@ -22,27 +22,15 @@ int main(int argc, char* argv[])
 		// cout << testMeasures[i].toString() << endl;
 		// cout << endl;
 	// }
-
-    //vector<double> meanAirQuality = emp->getMeanAirQuality(make_pair(45.0,0.0), 4.0, 1580468400, *dataManager);
-    //cout << "concentration of O3 = " << meanAirQuality.at(1) << endl;
-    //cout << "concentration of SO2 = " << meanAirQuality.at(2) << endl;
-    //cout << "concentration of NO2 = " << meanAirQuality.at(3) << endl;
-    //cout << "concentration of PM10 = " << meanAirQuality.at(4) << endl;
-    //cout << endl;
-
-    // vector<double> meanAirQualityTimeSpawn = emp->getMeanAirQualityTimeSpawn(make_pair(45.0,0.0), 1.0, 1580209200, 1580468400, *dataManager);
-    // cout << "concentration of O3 = " << meanAirQualityTimeSpawn.at(1) << endl;
-    // cout << "concentration of SO2 = " << meanAirQualityTimeSpawn.at(2) << endl;
-    // cout << "concentration of NO2 = " << meanAirQualityTimeSpawn.at(3) << endl;
-    // cout << "concentration of PM10 = " << meanAirQualityTimeSpawn.at(4) << endl;
 	
 	cout << "------------------------------ A I R W A T C H E R ------------------------------" << endl;
 	cout << "Disclaimer : this app is under construction. Currently, there are 2 working functionalities." << endl << endl;
 	cout << "1 : Fetch mean air quality over given area." << endl;
-	cout << "2 : Determine if a given AirCleaner is effective." << endl << endl;
+	cout << "2 : Determine if the AirCleaners are effective over their area." << endl << endl;
 	cout << "Please enter the number of the functionality you wish to use : ";
 	int choice1;
 	int choice2;
+	int choice3;
 	cin >> choice1;
 	while(choice1 != 1 && choice1 != 2)
 	{
@@ -71,17 +59,15 @@ int main(int argc, char* argv[])
 					cin >> choice2;
 				}
 				cout << endl;
-				string day, month, year;
 				switch(choice2){
 					case 1: 
-					{		
+					{		string day, month, year;
 							// cout << areaCenter.first << " | " << areaCenter.second << " | " << areaRadius << endl;   //Affichage test
 							cout << "Enter date of measure following the dd-mm-yyyy format : ";
 							getline(cin, day, '-');
 							getline(cin, month, '-');
 							getline(cin, year);
-							time_t instantTime = 0;
-							instantTime = dateParser(day, month, year);
+							time_t instantTime = dateParser(day, month, year);
 							// cout << instantTime << endl;		//Affichage test
 							vector<double> meanAirQuality = emp->getMeanAirQuality(areaCenter, areaRadius, instantTime, *dataManager);
 							cout << "concentration of O3 = " << meanAirQuality.at(1) << endl;
@@ -93,18 +79,19 @@ int main(int argc, char* argv[])
 					}
 					case 2: 
 					{
+						
+							string day1, month1, year1;
+							string day2, month2, year2;
 							cout << "Enter measure start date following the dd-mm-yyyy format : ";
-							getline(cin, day, '-');
-							getline(cin, month, '-');
-							getline(cin, year);
-							time_t startTime = 0;
-							startTime = dateParser(day, month, year);
+							getline(cin, day1, '-');
+							getline(cin, month1, '-');
+							getline(cin, year1);
+							time_t startTime = dateParser(day1, month1, year1);
 							cout << "Enter measure end date following the dd-mm-yyyy format : ";
-							getline(cin, day, '-');
-							getline(cin, month, '-');
-							getline(cin, year);
-							time_t endTime = 0;
-							endTime = dateParser(day, month, year);
+							getline(cin, day2, '-');
+							getline(cin, month2, '-');
+							getline(cin, year2);
+							time_t endTime = dateParser(day2, month2, year2);
 							vector<double> meanAirQualityTimeSpawn = emp->getMeanAirQualityTimeSpawn(areaCenter, areaRadius, startTime, endTime, *dataManager);
 							cout << "concentration of O3 = " << meanAirQualityTimeSpawn.at(1) << endl;
 							cout << "concentration of SO2 = " << meanAirQualityTimeSpawn.at(2) << endl;
@@ -116,22 +103,25 @@ int main(int argc, char* argv[])
 				}
 				break;
 		}
-		case 2: break;
+		case 2: cout << "1 : Evaluate current AirCleaner efficacy" << endl << "2 : Evaluate AirCleaner efficacy over time" << endl << endl << "Please select your option : ";
+				cin >> choice3;
+				while(choice3 != 1 && choice3 != 2)
+				{
+					cout << "Please enter the number of an operational functionality : ";
+					cin >> choice3;
+				}
+				// switch(
+				break;
 	}	
 	
     delete emp;
     delete dataManager;
     cout << "End of program." << endl;   //Affichage test
-	
-    //testFonctionality2Zone();
-    //testFonctionalityEvaluation();
 
     return 0;
 }
 
-void testFonctionality2Zone(){
-	Employee* emp = new Employee(string("f.chaubeau@gmail.com"), string("Chaubeau"), string("1234"), string("0123456789"), 0);
-	DataManager* dataManager = new DataManager();
+void testFonctionality2Zone(Employee* emp, DataManager* dataManager){
 	vector<Cleaning> cleaners = dataManager->initCleanings();
 	
 	for(int i=0;i<cleaners.size();i++){
@@ -149,9 +139,7 @@ void testFonctionality2Zone(){
 }
 
 
-void testFonctionalityEvaluation(){
-	Employee* emp = new Employee(string("f.chaubeau@gmail.com"), string("Chaubeau"), string("1234"), string("0123456789"), 0);
-	DataManager* dataManager = new DataManager();
+void testFonctionalityEvaluation(Employee* emp, DataManager* dataManager){
 	vector<Cleaning> cleaners = dataManager->initCleanings();
 	cout<<"Start to analysing the impact of the cleaners by the evolution of the time"<<endl<<endl;
 	for(int i=0;i<cleaners.size();i++){
@@ -176,14 +164,11 @@ time_t dateParser(const string& dayS, const string& monthS, const string& yearS)
 	parsedDate->tm_min = 0;
 	parsedDate->tm_sec = 0;
 	time_t date = timegm(parsedDate);
-	// char* testDate = new char[20];
 	
-	// strftime(testDate,20,"%F %T",parsedDate);   //Affichage test
+	// char* testDate = new char[20];		//Affichage test
+	// strftime(testDate,20,"%F %T",parsedDate);   
 	// cout << testDate << endl;
 	// cout << date << endl;
-	
-	// time_t test = 1580468400;  //Affichage test
-	// cout << ctime(&test);
 	// delete testDate;
 	
 	return date;
