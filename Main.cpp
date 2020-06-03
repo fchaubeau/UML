@@ -103,6 +103,7 @@ int main(int argc, char* argv[])
 				}
 				break;
 		}
+
 		case 2: cout << "1 : Evaluate current AirCleaner efficacy" << endl << "2 : Evaluate AirCleaner efficacy over time" << endl << endl << "Please select your option : ";
 				cin >> choice3;
 				while(choice3 != 1 && choice3 != 2)
@@ -111,7 +112,6 @@ int main(int argc, char* argv[])
 					cin >> choice3;
 				}
 				// switch(
-				break;
 	}	
 	
     delete emp;
@@ -120,6 +120,7 @@ int main(int argc, char* argv[])
 
     return 0;
 }
+
 
 void testFonctionality2Zone(Employee* emp, DataManager* dataManager){
 	vector<Cleaning> cleaners = dataManager->initCleanings();
@@ -156,7 +157,7 @@ time_t dateParser(const string& dayS, const string& monthS, const string& yearS)
 	day = stoi(dayS);
 	month = stoi(monthS);
 	year = stoi(yearS);
-	struct tm* parsedDate;
+	struct tm* parsedDate = new struct tm();
 	parsedDate->tm_year = year - 1900;
 	parsedDate->tm_mon = month - 1;
 	parsedDate->tm_mday = day;
@@ -170,6 +171,6 @@ time_t dateParser(const string& dayS, const string& monthS, const string& yearS)
 	// cout << testDate << endl;
 	// cout << date << endl;
 	// delete testDate;
-	
+	delete parsedDate;
 	return date;
 }
