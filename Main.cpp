@@ -37,13 +37,14 @@ int main(int argc, char* argv[])
 	cout << "------------------------------ A I R W A T C H E R ------------------------------" << endl;
 	cout << "Disclaimer : this app is under construction. Currently, there are 2 working functionalities." << endl << endl;
 	cout << "1 : Fetch mean air quality over given area." << endl;
-	cout << "2 : Determine if the AirCleaners are effective over their area." << endl << endl;
+	cout << "2 : Determine if the AirCleaners are effective over their area." << endl;
+	cout << "3 : Determine the AirCleaners effect radius." << endl << endl;
 	cout << "Please enter the number of the functionality you wish to use : ";
 	int choice1;
 	int choice2;
 	int choice3;
 	cin >> choice1;
-	while(choice1 != 1 && choice1 != 2)
+	while(choice1 != 1 && choice1 != 2 && choice1 != 3)
 	{
 		cout << "Please enter the number of an operational functionality : ";
 		cin >> choice1;
@@ -138,6 +139,33 @@ int main(int argc, char* argv[])
 							break;
 						}
 				}
+		}
+
+		case 3:
+		{
+			cout << "1 : Evaluate AirCleaner 1 radius" << endl << "2 : Evaluate AirCleaner 2 radius" << endl << endl << "Please select your option : ";
+			cin >> choice3;
+			vector<Cleaning> cleaners = dataManager->initCleanings();
+			while (choice3 != 1 && choice3 != 2)
+			{
+				cout << "Please enter the number of an operational functionality : ";
+				cin >> choice3;
+			}
+			switch (choice3)
+			{
+			case 1:
+			{
+				int radius = emp->calculRayonEffet(cleaners[0], 0.05, 0.1, *dataManager);
+				cout << "Cleaner 1 reffect radius : " << radius << endl;
+				break;
+			}
+			case 2:
+			{
+				int radius = emp->calculRayonEffet(cleaners[1], 0.05, 0.1, *dataManager);
+				cout << "Cleaner 2 reffect radius : " << radius << endl;
+				break;
+			}
+			}
 		}
 	}	
 	
