@@ -108,7 +108,8 @@ vector<double> Employee::getMeanAirQuality(const pair<double, double> & center, 
     }
     for(unsigned int i = 0; i < dataSum.size(); i++)
     {
-        dataSum[i] = dataSum[i]/sizeOfData[i];
+		if(sizeOfData[i]>0)
+			dataSum[i] = dataSum[i]/sizeOfData[i];
     }
     return dataSum;
 }
@@ -118,7 +119,7 @@ int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radi
 	int longitude = cleaning.getLongitude();
 	int latitude = cleaning.getLatitude();
 	time_t startTime = cleaning.getStartTime();
-	time_t stopTime = cleaning.getStopTime();
+	time_t stopTime = cleaning.getStopTime() - 12*3600;
 	
   	pair<double,double> coordinate = make_pair(latitude,longitude);
 
@@ -128,7 +129,7 @@ int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radi
 	
 	int rate = 0;
 	
-	for(int i = 0 ; i<startQuality.size() ; i++){
+	for(int i = 1 ; i<startQuality.size() ; i++){
 		if(stopQuality[i]>=(1+rateAmeliorationP2)*startQuality[i]){
 			cout<<"Attribute No."<<i<<": A strong amelioration detected."<<endl;
 			rate+=2;
@@ -149,22 +150,22 @@ int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radi
 
 double Employee::calculRayonEffet(const Cleaning & cleaning, const double & rateAmeliorationP1, const double & rateAmeliorationP2, const DataManager & dataManager)
 {
-    double rayon = 0.0;
-    bool effect = true;
-    while(effect)
-    {
-        if(analyseImpactNiveau(cleaning, rayon, rateAmeliorationP1, rateAmeliorationP2, dataManager) > 0)
-        {
-            rayon += 0.1;
-        }
-        else
-        {
-            effect = false;
-        }
+	double rayon = 0.0;
+	bool effect = true;
+	while (effect)
+	{
+		if (analyseImpactNiveau(cleaning, rayon, rateAmeliorationP1, rateAmeliorationP2, dataManager) > 0)
+		{
+			rayon += 0.1;
+		}
+		else
+		{
+			effect = false;
+		}
 
-    }
+	}
 
-    return rayon
+	return rayon;
 }
 
 void Employee::analyseImpactEvolutionDeTemps(const Cleaning & cleaning, const double & radiusAnalyse, const double & rateAmeliorationP1, const double & rateAmeliorationP2, const DataManager & dataManager){
