@@ -150,7 +150,7 @@ int Employee::analyseImpactNiveau(const Cleaning & cleaning, const double & radi
 
 double Employee::calculRayonEffet(const Cleaning & cleaning, const double & rateAmeliorationP1, const double & rateAmeliorationP2, const DataManager & dataManager)
 {
-	double rayon = 1.0;
+	double rayon = 0.1;
 	bool effect = true;
 	int grade = 0;
 	while (effect)
@@ -159,7 +159,7 @@ double Employee::calculRayonEffet(const Cleaning & cleaning, const double & rate
 		cout << "grade = " << grade << endl;
 		if (grade > 0)
 		{
-			rayon += 3.0;
+			rayon += 0.1;
 		}
 		else
 		{

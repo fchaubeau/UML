@@ -155,13 +155,13 @@ int main(int argc, char* argv[])
 			{
 			case 1:
 			{
-				int radius = emp->calculRayonEffet(cleaners[0], 0.05, 0.1, *dataManager);
+				int radius = emp->calculRayonEffet(cleaners[0], 0.2, 0.4, *dataManager);
 				cout << "Cleaner 1 reffect radius : " << radius << endl;
 				break;
 			}
 			case 2:
 			{
-				int radius = emp->calculRayonEffet(cleaners[1], 0.05, 0.1, *dataManager);
+				double radius = emp->calculRayonEffet(cleaners[1], 0.2, 0.4, *dataManager);
 				cout << "Cleaner 2 reffect radius : " << radius << endl;
 				break;
 			}
