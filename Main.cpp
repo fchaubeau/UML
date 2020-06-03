@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
 	cout << "Fetching data, please wait..." << endl << endl;
     DataManager* dataManager = new DataManager();
 	
-	// vector <Measure> testMeasures = dataManager->getMeasures();
+	// vector <Measure> testMeasures = dataManager->getMeasures();   //Affichage test
 	// for(int i = 0; i < 50; i++)
 	// {
 		// cout << testMeasures[i].toString() << endl;
