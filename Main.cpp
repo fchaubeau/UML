@@ -117,13 +117,13 @@ void testFonctionality2Zone(){
 	for(int i=0;i<cleaners.size();i++){
 		cout<<"Analysing "<<cleaners[i].getCleanerId()<<"for the sensors in the range : radius = 1.0"<<endl<<endl;		
 		int rate = emp->analyseImpactNiveau(cleaners[i],1.0,0.05,0.1,*dataManager);
-		cout<<"The rate for "<<cleaners[i].getCleanerId()<<" vaut "<<rate<<" (rating from 0 to 8)"<<endl<<endl<<endl;
+		cout<<"The rate for "<<cleaners[i].getCleanerId()<<" is "<<rate<<" (rating from 0 to 8)"<<endl<<endl<<endl;
 	}
 
 	for(int i=0;i<cleaners.size();i++){
 		cout<<"Analysing "<<cleaners[i].getCleanerId()<<"for the sensors in the range : radius = 4.0"<<endl<<endl;		
 		int rate = emp->analyseImpactNiveau(cleaners[i],4.0,0.05,0.1,*dataManager);
-		cout<<"The rate for "<<cleaners[i].getCleanerId()<<" vaut "<<rate<<" (rating from 0 to 8)"<<endl<<endl<<endl;
+		cout<<"The rate for "<<cleaners[i].getCleanerId()<<" is "<<rate<<" (rating from 0 to 8)"<<endl<<endl<<endl;
 	}
 
 }
@@ -155,7 +155,7 @@ time_t dateParser(const string& dayS, const string& monthS, const string& yearS)
 	parsedDate->tm_hour = 12;
 	parsedDate->tm_min = 0;
 	parsedDate->tm_sec = 0;
-	time_t date = mktime(parsedDate);
+	time_t date = timegm(parsedDate);
 	char* testDate;
 	
 	strftime(testDate,20,"%F %T",parsedDate);   //Affichage test
