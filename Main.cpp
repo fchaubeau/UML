@@ -140,7 +140,7 @@ int main(int argc, char* argv[])
 
 void testFonctionality2Zone(Employee* emp, DataManager* dataManager)
 {
-	vector<Cleaning> cleaners = dataManager->initCleanings();
+	vector<Cleaning> cleaners = dataManager->getCleanings();
 	
 	for(int i=0;i<cleaners.size();i++){
 		cout<<"Analysing "<<cleaners[i].getCleanerId()<<" for the sensors in the range : radius = 1.0"<<endl<<endl;		
@@ -159,7 +159,7 @@ void testFonctionality2Zone(Employee* emp, DataManager* dataManager)
 
 void testFonctionalityEvaluation(Employee* emp, DataManager* dataManager)
 {
-	vector<Cleaning> cleaners = dataManager->initCleanings();
+	vector<Cleaning> cleaners = dataManager->getCleanings();
 	cout<<"Start to analysing the impact of the cleaners by the evolution of the time"<<endl<<endl;
 	for(int i=0;i<cleaners.size();i++){
 		cout<<"Cleaner No."<<i<<": "<<endl;

@@ -20,6 +20,7 @@ DataManager::DataManager()
 	//cout << "measures types ok" << endl;
  	//this->employees = initEmployees();
 	//cout << "employee ok" << endl;
+	this->cleanings = initCleanings();
 }
 
 
