@@ -2,6 +2,7 @@ using namespace std;
 
 #include <iostream>
 #include <ctime>
+#include <string>
 
 #include "Measure.h"
 
@@ -32,3 +33,14 @@ Measure &Measure::operator=(const Measure & source)
 	}
 	return *this;
 } 
+
+string Measure::toString() const
+{
+	string toReturn = "";
+	toReturn += "Time = ";
+	toReturn += to_string(this->time);
+	toReturn += "\nValue = ";
+	toReturn += to_string(this->value);
+	return toReturn;
+
+}

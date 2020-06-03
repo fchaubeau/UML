@@ -2,6 +2,7 @@
 #define MEASURE_H
 
 #include <ctime>
+#include <string>
 
 using namespace std;
 
@@ -11,6 +12,7 @@ public:
 	Measure(const Measure & measure);
 	Measure(const time_t & time, const string & sensorId, const string & attributeId, const double & value);
 	Measure& operator=(const Measure & source);
+	string toString() const;
 	~Measure();
 	string getSensorId() const{
 		return sensorId;

@@ -14,13 +14,19 @@ int main(int argc, char* argv[])
 
 	cout << "Fetching data, please wait..." << endl;
     DataManager* dataManager = new DataManager();
+	vector <Measure> testMeasures = dataManager->getMeasures();
+	for(int i = 0; i < 50; i++)
+	{
+		cout << testMeasures[i].toString() << endl;
+		cout << endl;
+	}
 
-    // vector<double> meanAirQuality = emp->getMeanAirQuality(make_pair(45.0,0.0), 4.0, 1580468400, *dataManager);
-    // cout << "concentration of O3 = " << meanAirQuality.at(1) << endl;
-    // cout << "concentration of SO2 = " << meanAirQuality.at(2) << endl;
-    // cout << "concentration of NO2 = " << meanAirQuality.at(3) << endl;
-    // cout << "concentration of PM10 = " << meanAirQuality.at(4) << endl;
-    // cout << endl;
+    //vector<double> meanAirQuality = emp->getMeanAirQuality(make_pair(45.0,0.0), 4.0, 1580468400, *dataManager);
+    //cout << "concentration of O3 = " << meanAirQuality.at(1) << endl;
+    //cout << "concentration of SO2 = " << meanAirQuality.at(2) << endl;
+    //cout << "concentration of NO2 = " << meanAirQuality.at(3) << endl;
+    //cout << "concentration of PM10 = " << meanAirQuality.at(4) << endl;
+    //cout << endl;
 
     // vector<double> meanAirQualityTimeSpawn = emp->getMeanAirQualityTimeSpawn(make_pair(45.0,0.0), 1.0, 1580209200, 1580468400, *dataManager);
     // cout << "concentration of O3 = " << meanAirQualityTimeSpawn.at(1) << endl;
@@ -35,72 +41,80 @@ int main(int argc, char* argv[])
 	cout << "Please enter the number of the functionality you wish to use : ";
 	int choice;
 	cin >> choice;
-	switch(choice){
-		case 1: 
-		{
-				cout << "Enter the coordinates of the center of the area : " << endl;
-				double xCoord, yCoord;
-				cout << "x coordinate : ";
-				cin >> xCoord;
-				cout << "y coordinate : ";
-				cin >> yCoord;
-				pair<double,double> areaCenter (xCoord,yCoord);
-				cout << "Enter the radius of the area : ";
-				double areaRadius;
-				cin >> areaRadius;
-				cout << "1 : Get instant mean air quality" << endl << "2 : Get mean air quality over a period" << endl;
-				cin >> choice;
-				string day, month, year;
-				switch(choice){
-					case 1: 
-					{		
-							cout << "Enter date of measure following the dd-mm-yyyy format : ";
-							getline(cin, day, '-');
-							getline(cin, month, '-');
-							getline(cin, year);
-							time_t instantTime = dateParser(day, month, year);
-							vector<double> meanAirQuality = emp->getMeanAirQuality(areaCenter, areaRadius, instantTime, *dataManager);
-							cout << "concentration of O3 = " << meanAirQuality.at(1) << endl;
-							cout << "concentration of SO2 = " << meanAirQuality.at(2) << endl;
-							cout << "concentration of NO2 = " << meanAirQuality.at(3) << endl;
-							cout << "concentration of PM10 = " << meanAirQuality.at(4) << endl;
-							cout << endl;
-					}
-							break;
-					case 2: 
-					{
-							cout << "Enter measure start date following the dd-mm-yyyy format : ";
-							getline(cin, day, '-');
-							getline(cin, month, '-');
-							getline(cin, year);
-							time_t startTime = dateParser(day, month, year);
-							cout << "Enter measure end date following the dd-mm-yyyy format : ";
-							getline(cin, day, '-');
-							getline(cin, month, '-');
-							getline(cin, year);
-							time_t endTime = dateParser(day, month, year);
-							vector<double> meanAirQualityTimeSpawn = emp->getMeanAirQualityTimeSpawn(areaCenter, areaRadius, startTime, endTime, *dataManager);
-							cout << "concentration of O3 = " << meanAirQualityTimeSpawn.at(1) << endl;
-							cout << "concentration of SO2 = " << meanAirQualityTimeSpawn.at(2) << endl;
-							cout << "concentration of NO2 = " << meanAirQualityTimeSpawn.at(3) << endl;
-							cout << "concentration of PM10 = " << meanAirQualityTimeSpawn.at(4) << endl;
-							cout << endl;
-					}
-							break;
-					default: cout << "Please enter the number of an operational functionality : ";
-							break;
+	if(choice == 1)
+	{
+		cout << "Enter the coordinates of the center of the area : " << endl;
+		double xCoord, yCoord;
+		cout << "x coordinate : ";
+		cin >> xCoord;
+		cout << "y coordinate : ";
+		cin >> yCoord;
+		pair<double,double> areaCenter (xCoord,yCoord);
+		cout << "Enter the radius of the area : ";
+		double areaRadius;
+		cin >> areaRadius;
+		cout << "1 : Get instant mean air quality" << endl << "2 : Get mean air quality over a period" << endl;
+		cin >> choice;
+		string day, month, year;
+		switch(choice){
+			case 1: 
+			{		
+				cout << "Enter date of measure following the dd-mm-yyyy format : ";
+				getline(cin, day, '-');
+				getline(cin, month, '-');
+				getline(cin, year);
+				if(day != "" && month != "" && year != ""){
+					time_t instantTime = dateParser(day, month, year);
+					//instantTime -= 3600;
+					cout << instantTime << endl;
+					vector<double> meanAirQuality = emp->getMeanAirQuality(areaCenter, areaRadius, instantTime, *dataManager);
+					cout << "concentration of O3 = " << meanAirQuality.at(1) << endl;
+					cout << "concentration of SO2 = " << meanAirQuality.at(2) << endl;
+					cout << "concentration of NO2 = " << meanAirQuality.at(3) << endl;
+					cout << "concentration of PM10 = " << meanAirQuality.at(4) << endl;
+					cout << endl;
 				}
+			}
+				break;
+			case 2: 
+			{
+				cout << "Enter measure start date following the dd-mm-yyyy format : ";
+				getline(cin, day, '-');
+				getline(cin, month, '-');
+				getline(cin, year);
+				time_t startTime = dateParser(day, month, year);
+				//startTime -= 3600;
+				cout << "Enter measure end date following the dd-mm-yyyy format : ";
+				getline(cin, day, '-');
+				getline(cin, month, '-');
+				getline(cin, year);
+				time_t endTime = dateParser(day, month, year);
+				//startTime -= 3600;
+				vector<double> meanAirQualityTimeSpawn = emp->getMeanAirQualityTimeSpawn(areaCenter, areaRadius, startTime, endTime, *dataManager);
+				cout << "concentration of O3 = " << meanAirQualityTimeSpawn.at(1) << endl;
+				cout << "concentration of SO2 = " << meanAirQualityTimeSpawn.at(2) << endl;
+				cout << "concentration of NO2 = " << meanAirQualityTimeSpawn.at(3) << endl;
+				cout << "concentration of PM10 = " << meanAirQualityTimeSpawn.at(4) << endl;
+				cout << endl;
+			}
+				break;
+			default:
+			{
+				cout << "Please enter the number of an operational functionality : ";
+			}
+				break;
+
 		}
-				break;
-		case 2: 
-				break;
-		default: cout << "Please enter the number of an operational functionality : ";
-				break;
+		cout << "check 1\n";
+	}
+	else
+	{
+		cout << "Please enter the number of an operational functionality : ";		
 	}	
 
-    delete emp;
-    delete dataManager;
-
+    //delete emp;
+    //delete dataManager;
+	cout << "aaaa";
     return 0;
 }
 
