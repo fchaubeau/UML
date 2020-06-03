@@ -65,10 +65,31 @@ int main(int argc, char* argv[])
 				getline(cin, month, '-');
 				getline(cin, year);
 				if(day != "" && month != "" && year != ""){
-					time_t instantTime = dateParser(day, month, year);
-					//instantTime -= 3600;
-					cout << instantTime << endl;
-					vector<double> meanAirQuality = emp->getMeanAirQuality(areaCenter, areaRadius, instantTime, *dataManager);
+					cout << "before dateParser" << endl;
+					int iDay = stoi(day);
+					int iMonth = stoi(month);
+					int iYear = stoi(year);
+					time_t rawtime;
+					struct tm * timeinfo;
+
+						/* get current timeinfo: */
+					time ( &rawtime ); //or: rawtime = time(0);
+					/* convert to struct: */
+					timeinfo = localtime ( &rawtime ); 
+
+					/* now modify the timeinfo to the given date: */
+					timeinfo->tm_year   = iYear - 1900;
+					timeinfo->tm_mon    = iMonth - 1;    //months since January - [0,11]
+					timeinfo->tm_mday   = iDay;          //day of the month - [1,31] 
+					timeinfo->tm_hour   = 12;         //hours since midnight - [0,23]
+					timeinfo->tm_min    = 0;          //minutes after the hour - [0,59]
+					timeinfo->tm_sec    = 0;          //seconds after the minute - [0,59]
+
+					/* call mktime: create unix time stamp from timeinfo struct */
+					time_t date = mktime ( timeinfo );
+
+					cout << "timeStamp = " << date << endl;
+					vector<double> meanAirQuality = emp->getMeanAirQuality(areaCenter, areaRadius, date, *dataManager);
 					cout << "concentration of O3 = " << meanAirQuality.at(1) << endl;
 					cout << "concentration of SO2 = " << meanAirQuality.at(2) << endl;
 					cout << "concentration of NO2 = " << meanAirQuality.at(3) << endl;
@@ -84,14 +105,15 @@ int main(int argc, char* argv[])
 				getline(cin, day, '-');
 				getline(cin, month, '-');
 				getline(cin, year);
-				time_t startTime = dateParser(day, month, year);
-				//startTime -= 3600;
+				time_t startTime = 0;
+				startTime = dateParser(day, month, year);
+				
 				cout << "Enter measure end date following the dd-mm-yyyy format : ";
 				getline(cin, day, '-');
 				getline(cin, month, '-');
 				getline(cin, year);
-				time_t endTime = dateParser(day, month, year);
-				//startTime -= 3600;
+				time_t endTime = 0;
+				endTime = dateParser(day, month, year);
 				vector<double> meanAirQualityTimeSpawn = emp->getMeanAirQualityTimeSpawn(areaCenter, areaRadius, startTime, endTime, *dataManager);
 				cout << "concentration of O3 = " << meanAirQualityTimeSpawn.at(1) << endl;
 				cout << "concentration of SO2 = " << meanAirQualityTimeSpawn.at(2) << endl;
