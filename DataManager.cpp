@@ -185,7 +185,7 @@ vector<CompanyOwner> DataManager::initCompanyOwners()
 vector<Employee> DataManager::initEmployees()
 {
 	vector<Employee> employees;
-	ifstream file("xxxxxxx.csv");
+	ifstream file("employees.csv");
 	while (!file.eof())
 	{
 		string line;
