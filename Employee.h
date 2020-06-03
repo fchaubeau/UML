@@ -13,7 +13,7 @@
 using namespace std;
 
 class DataManager;
-class Employee : User
+class Employee : public User
 {
 
 public:

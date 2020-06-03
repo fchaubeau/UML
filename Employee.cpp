@@ -175,7 +175,7 @@ void Employee::analyseImpactEvolutionDeTemps(const Cleaning & cleaning, const do
 	int longitude = cleaning.getLongitude();
 	int latitude = cleaning.getLatitude();
 	time_t startTime = cleaning.getStartTime();
-	time_t stopTime = cleaning.getStopTime();
+	time_t stopTime = cleaning.getStopTime() - 12*3600;
 	int i=0;
   	pair<double,double> coordinate = make_pair(latitude,longitude);
 
@@ -185,7 +185,7 @@ void Employee::analyseImpactEvolutionDeTemps(const Cleaning & cleaning, const do
 		vector<double>startQuality = getMeanAirQuality(coordinate, radiusAnalyse, startTime, dataManager);   //Change to call the fonction getMeanAirQualityTimeSpawn(...) as you like
 	
 		vector<double>stopQuality = getMeanAirQuality(coordinate, radiusAnalyse, startTime+=864000, dataManager);  
-		for(int j = 0 ; j<startQuality.size() ; j++){
+		for(int j = 1 ; j<startQuality.size() ; j++){
 			if(stopQuality[j]>=(1+rateAmeliorationP2)*startQuality[j]){
 				cout<<"Attribute No."<<j<<": A strong amelioration detected."<<endl;
 				rate+=2;
