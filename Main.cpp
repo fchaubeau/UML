@@ -51,7 +51,7 @@ int main(int argc, char* argv[])
 				double areaRadius;
 				cin >> areaRadius;
 				cout << endl;
-				cout << "1 : Get instant mean air quality" << endl << "2 : Get mean air quality over a period" << endl << endl << "Please select your option : ";
+				cout << "1 : Get instant mean air quality" << endl << "2 : Get mean air quality over a period of time" << endl << endl << "Please select your option : ";
 				cin >> choice2;
 				while(choice2 != 1 && choice2 != 2)
 				{
@@ -70,10 +70,10 @@ int main(int argc, char* argv[])
 							time_t instantTime = dateParser(day, month, year);
 							// cout << instantTime << endl;		//Affichage test
 							vector<double> meanAirQuality = emp->getMeanAirQuality(areaCenter, areaRadius, instantTime, *dataManager);
-							cout << "concentration of O3 = " << meanAirQuality.at(1) << endl;
-							cout << "concentration of SO2 = " << meanAirQuality.at(2) << endl;
-							cout << "concentration of NO2 = " << meanAirQuality.at(3) << endl;
-							cout << "concentration of PM10 = " << meanAirQuality.at(4) << endl;
+							cout << "Concentration of O3 = " << meanAirQuality.at(1) << endl;
+							cout << "Concentration of SO2 = " << meanAirQuality.at(2) << endl;
+							cout << "Concentration of NO2 = " << meanAirQuality.at(3) << endl;
+							cout << "Concentration of PM10 = " << meanAirQuality.at(4) << endl;
 							cout << endl;
 							break;
 					}
@@ -93,10 +93,10 @@ int main(int argc, char* argv[])
 							getline(cin, year2);
 							time_t endTime = dateParser(day2, month2, year2);
 							vector<double> meanAirQualityTimeSpawn = emp->getMeanAirQualityTimeSpawn(areaCenter, areaRadius, startTime, endTime, *dataManager);
-							cout << "concentration of O3 = " << meanAirQualityTimeSpawn.at(1) << endl;
-							cout << "concentration of SO2 = " << meanAirQualityTimeSpawn.at(2) << endl;
-							cout << "concentration of NO2 = " << meanAirQualityTimeSpawn.at(3) << endl;
-							cout << "concentration of PM10 = " << meanAirQualityTimeSpawn.at(4) << endl;
+							cout << "Concentration of O3 = " << meanAirQualityTimeSpawn.at(1) << endl;
+							cout << "Concentration of SO2 = " << meanAirQualityTimeSpawn.at(2) << endl;
+							cout << "Concentration of NO2 = " << meanAirQualityTimeSpawn.at(3) << endl;
+							cout << "Concentration of PM10 = " << meanAirQualityTimeSpawn.at(4) << endl;
 							cout << endl;
 							break;
 					}
@@ -171,6 +171,7 @@ time_t dateParser(const string& dayS, const string& monthS, const string& yearS)
 	// cout << testDate << endl;
 	// cout << date << endl;
 	// delete testDate;
+	
 	delete parsedDate;
 	return date;
 }
