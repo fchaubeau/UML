@@ -82,7 +82,7 @@ int main(int argc, char* argv[])
 							getline(cin, year);
 							time_t instantTime = 0;
 							instantTime = dateParser(day, month, year);
-							cout << instantTime << endl;
+							// cout << instantTime << endl;		//Affichage test
 							vector<double> meanAirQuality = emp->getMeanAirQuality(areaCenter, areaRadius, instantTime, *dataManager);
 							cout << "concentration of O3 = " << meanAirQuality.at(1) << endl;
 							cout << "concentration of SO2 = " << meanAirQuality.at(2) << endl;
@@ -176,15 +176,15 @@ time_t dateParser(const string& dayS, const string& monthS, const string& yearS)
 	parsedDate->tm_min = 0;
 	parsedDate->tm_sec = 0;
 	time_t date = timegm(parsedDate);
-	char* testDate = new char[20];
+	// char* testDate = new char[20];
 	
-	strftime(testDate,20,"%F %T",parsedDate);   //Affichage test
-	cout << testDate << endl;
-	cout << date << endl;
+	// strftime(testDate,20,"%F %T",parsedDate);   //Affichage test
+	// cout << testDate << endl;
+	// cout << date << endl;
 	
 	// time_t test = 1580468400;  //Affichage test
 	// cout << ctime(&test);
-	delete testDate;
+	// delete testDate;
 	
 	return date;
 }
