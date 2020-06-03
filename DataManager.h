@@ -9,6 +9,7 @@
 #include "Measure.h"
 #include "Sensor.h"
 #include "MeasureType.h"
+#include "Cleaning.h"
 
 using namespace std;
 
@@ -25,6 +26,7 @@ public:
 	vector<Measure> getMeasures() const { return measures; };
 	vector<CompanyOwner> getCompanyOwners() const { return companyOwners; };
 	vector<Employee> getEmployees() const { return employees; };
+	vector<Cleaning> getCleanings() const { return cleanings; };
 
 	vector<User> initUsers();
 	vector<Sensor> initSensors();
@@ -32,6 +34,7 @@ public:
 	vector<Measure> initMeasures();
 	vector<CompanyOwner> initCompanyOwners();
 	vector<Employee> initEmployees();
+	vector<Cleaning> initCleanings();
 
 private:
 	vector<User> users;
@@ -40,6 +43,7 @@ private:
 	vector<Measure> measures;
 	vector<CompanyOwner> companyOwners;
 	vector<Employee> employees;
+	vector<Cleaning> cleanings;
 };
 
 #endif //DATA_MANAGER_H
