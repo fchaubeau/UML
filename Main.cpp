@@ -162,7 +162,7 @@ void testFonctionalityEvaluation(Employee* emp, DataManager* dataManager)
 	vector<Cleaning> cleaners = dataManager->getCleanings();
 	cout<<"Start to analysing the impact of the cleaners by the evolution of the time"<<endl<<endl;
 	for(int i=0;i<cleaners.size();i++){
-		cout<<"Cleaner No."<<i<<": "<<endl;
+		cout<<"Cleaner No."<<i<<" : "<<endl;
 		emp->analyseImpactEvolutionDeTemps(cleaners[i],1.0,0.02,0.05,*dataManager);
 	}
 
