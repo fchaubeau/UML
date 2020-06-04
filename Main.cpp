@@ -24,13 +24,13 @@ int main(int argc, char* argv[])
 		// cout << endl;
 	// }
 	bool verified = false;
-	cout<< "authentification, employee only"<<endl;
+	cout<< "Authentification (employee only)"<<endl;
 	string email;
 	string pw;
 	while(!verified){
-		cout << "your email please: " << endl;
+		cout << "Your email please: " << endl;
 		cin >> email;
-		cout << "and your password please:" << endl;
+		cout << "Your password please: " << endl;
 		cin >> pw;
 		verified = authentification(email, pw, dataManager);
 	}
@@ -38,11 +38,12 @@ int main(int argc, char* argv[])
 	cout << "Disclaimer : this app is under construction. Currently, there are 2 working functionalities." << endl << endl;
 	cout << "1 : Fetch mean air quality over given area." << endl;
 	cout << "2 : Determine if the AirCleaners are effective over their area." << endl;
-	cout << "3 : Determine the AirCleaners effect radius." << endl << endl;
+	cout << "3 : Determine the AirCleaners' effect radius." << endl << endl;
 	cout << "Please enter the number of the functionality you wish to use : ";
 	int choice1;
 	int choice2;
 	int choice3;
+	int choice4;
 	cin >> choice1;
 	while(choice1 != 1 && choice1 != 2 && choice1 != 3)
 	{
@@ -144,14 +145,14 @@ int main(int argc, char* argv[])
 		case 3:
 		{
 			cout << "1 : Evaluate AirCleaner 1 radius" << endl << "2 : Evaluate AirCleaner 2 radius" << endl << endl << "Please select your option : ";
-			cin >> choice3;
+			cin >> choice4;
+			while(choice4 != 1 && choice4 != 2)
+				{
+					cout << "Please enter the number of an operational functionality : ";
+					cin >> choice4;
+				}
 			vector<Cleaning> cleaners = dataManager->initCleanings();
-			while (choice3 != 1 && choice3 != 2)
-			{
-				cout << "Please enter the number of an operational functionality : ";
-				cin >> choice3;
-			}
-			switch (choice3)
+			switch (choice4)
 			{
 			case 1:
 			{
