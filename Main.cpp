@@ -140,6 +140,7 @@ int main(int argc, char* argv[])
 							break;
 						}
 				}
+				break;
 		}
 
 		case 3:
@@ -154,19 +155,20 @@ int main(int argc, char* argv[])
 			vector<Cleaning> cleaners = dataManager->initCleanings();
 			switch (choice4)
 			{
-			case 1:
-			{
-				int radius = emp->calculRayonEffet(cleaners[0], 0.2, 0.4, *dataManager);
-				cout << "Cleaner 1 reffect radius : " << radius << endl;
-				break;
+				case 1:
+				{
+					int radius = emp->calculRayonEffet(cleaners[0], 0.2, 0.4, *dataManager);
+					cout << "Cleaner 1 reffect radius : " << radius << endl;
+					break;
+				}
+				case 2:
+				{
+					double radius = emp->calculRayonEffet(cleaners[1], 0.2, 0.4, *dataManager);
+					cout << "Cleaner 2 reffect radius : " << radius << endl;
+					break;
+				}
 			}
-			case 2:
-			{
-				double radius = emp->calculRayonEffet(cleaners[1], 0.2, 0.4, *dataManager);
-				cout << "Cleaner 2 reffect radius : " << radius << endl;
-				break;
-			}
-			}
+			break;
 		}
 	}	
 	
@@ -233,15 +235,16 @@ time_t dateParser(const string& dayS, const string& monthS, const string& yearS)
 	delete parsedDate;
 	return date;
 }
+
 bool authentification(const string& email, const string& password, DataManager* dataManager)
 {
 	bool verified = false;
-	cout<< "checking employees" << endl;
+	cout<< "Authenticating..." << endl;
 	vector<Employee> employees = dataManager->initEmployees();
 	
 	for(int i=0; i<employees.size(); i++){
 		if(employees[i].LogIn(email, password)){
-			cout<<employees[i].getName()<<", welcome." << endl;
+			cout<<employees[i].getName()<<" , welcome." << endl;
 			verified = true;
 			return verified;
 		}
