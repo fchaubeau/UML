@@ -26,6 +26,7 @@ public:
 	bool LogOut();
 	bool ModifyPassword(const string & newPassword);
 	virtual bool Menu();
+	string getName(){return this->name;};
 };
 
 #endif //USER_H
