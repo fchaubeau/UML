@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
 	string email;
 	string pw;
 	while(!verified){
-		cout << "Your email please: " << endl;
+		cout << "Your e-mail please: " << endl;
 		cin >> email;
 		cout << "Your password please: " << endl;
 		cin >> pw;
